@@ -1,0 +1,3708 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Required Meta Tags Always Come First -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Title -->
+  <title>Chart.js - Documentation | Front - Multipurpose Responsive Template</title>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="../favicon.ico">
+
+  <!-- Font -->
+  <link href="../../../css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- CSS Implementing Plugins -->
+  <link rel="stylesheet" href="../assets/css/vendor.min.css">
+
+  <!-- CSS Front Template -->
+  <link rel="stylesheet" href="../assets/css/theme.min.css?v=1.0">
+
+  <link rel="preload" href="../assets/css/theme.min-1.css" data-hs-appearance="default" as="style">
+  <link rel="preload" href="../assets/css/docs.css" data-hs-appearance="default" as="style">
+  <link rel="preload" href="../assets/css/theme-dark.min.css" data-hs-appearance="dark" as="style">
+
+  <style data-hs-appearance-onload-styles="">
+    *
+    {
+      transition: unset !important;
+    }
+
+    body
+    {
+      opacity: 0;
+    }
+  </style>
+
+  <script>
+            window.hs_config = {"autopath":"@@autopath","deleteLine":"hs-builder:delete","deleteLine:build":"hs-builder:build-delete","deleteLine:dist":"hs-builder:dist-delete","previewMode":false,"startPath":"/index.html","vars":{"themeFont":"https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap","version":"?v=1.0"},"layoutBuilder":{"extend":{"switcherSupport":true},"header":{"layoutMode":"default","containerMode":"container-fluid"},"sidebarLayout":"default"},"themeAppearance":{"layoutSkin":"default","sidebarSkin":"default","styles":{"colors":{"primary":"#377dff","transparent":"transparent","white":"#fff","dark":"132144","gray":{"100":"#f9fafc","900":"#1e2022"}},"font":"Inter"}},"languageDirection":{"lang":"en"},"skipFilesFromBundle":{"dist":["assets/js/hs.theme-appearance.js","assets/js/hs.theme-appearance-charts.js","assets/js/demo.js"],"build":["assets/css/theme.css","assets/vendor/hs-navbar-vertical-aside/dist/hs-navbar-vertical-aside-mini-cache.js","assets/js/demo.js","assets/css/theme-dark.css","assets/css/docs.css","assets/vendor/icon-set/style.css","assets/js/hs.theme-appearance.js","assets/js/hs.theme-appearance-charts.js","node_modules/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.min.js","assets/js/demo.js"]},"minifyCSSFiles":["assets/css/theme.css","assets/css/theme-dark.css"],"copyDependencies":{"dist":{"*assets/js/theme-custom.js":""},"build":{"*assets/js/theme-custom.js":"","node_modules/bootstrap-icons/font/*fonts/**":"assets/css"}},"buildFolder":"","replacePathsToCDN":{},"directoryNames":{"src":"./src","dist":"./dist","build":"./build"},"fileNames":{"dist":{"js":"theme.min.js","css":"theme.min.css"},"build":{"css":"theme.min.css","js":"theme.min.js","vendorCSS":"vendor.min.css","vendorJS":"vendor.min.js"}},"fileTypes":"jpg|png|svg|mp4|webm|ogv|json"}
+            window.hs_config.gulpRGBA = (p1) => {
+  const options = p1.split(',')
+  const hex = options[0].toString()
+  const transparent = options[1].toString()
+
+  var c;
+  if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
+    c= hex.substring(1).split('');
+    if(c.length== 3){
+      c= [c[0], c[0], c[1], c[1], c[2], c[2]];
+    }
+    c= '0x'+c.join('');
+    return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+',' + transparent + ')';
+  }
+  throw new Error('Bad Hex');
+}
+            window.hs_config.gulpDarken = (p1) => {
+  const options = p1.split(',')
+
+  let col = options[0].toString()
+  let amt = -parseInt(options[1])
+  var usePound = false
+
+  if (col[0] == "#") {
+    col = col.slice(1)
+    usePound = true
+  }
+  var num = parseInt(col, 16)
+  var r = (num >> 16) + amt
+  if (r > 255) {
+    r = 255
+  } else if (r < 0) {
+    r = 0
+  }
+  var b = ((num >> 8) & 0x00FF) + amt
+  if (b > 255) {
+    b = 255
+  } else if (b < 0) {
+    b = 0
+  }
+  var g = (num & 0x0000FF) + amt
+  if (g > 255) {
+    g = 255
+  } else if (g < 0) {
+    g = 0
+  }
+  return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16)
+}
+            window.hs_config.gulpLighten = (p1) => {
+  const options = p1.split(',')
+
+  let col = options[0].toString()
+  let amt = parseInt(options[1])
+  var usePound = false
+
+  if (col[0] == "#") {
+    col = col.slice(1)
+    usePound = true
+  }
+  var num = parseInt(col, 16)
+  var r = (num >> 16) + amt
+  if (r > 255) {
+    r = 255
+  } else if (r < 0) {
+    r = 0
+  }
+  var b = ((num >> 8) & 0x00FF) + amt
+  if (b > 255) {
+    b = 255
+  } else if (b < 0) {
+    b = 0
+  }
+  var g = (num & 0x0000FF) + amt
+  if (g > 255) {
+    g = 255
+  } else if (g < 0) {
+    g = 0
+  }
+  return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16)
+}
+            </script>
+</head>
+
+<body class="navbar-sidebar-aside-lg">
+
+  <script src="../assets/js/hs.theme-appearance.js"></script>
+
+  <!-- ========== HEADER ========== -->
+  <header id="header" class="navbar navbar-expand navbar-end navbar-light navbar-sticky-lg-top bg-white">
+    <div class="container-fluid">
+      <nav class="navbar-nav-wrap">
+        <div class="row flex-grow-1">
+          <!-- Default Logo -->
+          <div class="docs-navbar-sidebar-container d-flex align-items-center mb-2 mb-lg-0">
+            <a class="navbar-brand" href="index.html" aria-label="Front">
+              <img class="navbar-brand-logo" src="../assets/svg/logos/logo.svg" alt="Logo" data-hs-theme-appearance="default">
+              <img class="navbar-brand-logo" src="../assets/svg/logos-light/logo.svg" alt="Logo" data-hs-theme-appearance="dark">
+            </a>
+            <a href="changelog.html">
+              <span class="badge bg-soft-primary text-primary">v2.0</span>
+            </a>
+          </div>
+          <!-- End Default Logo -->
+
+          <div class="col-md px-lg-0">
+            <div class="d-flex justify-content-between align-items-center px-lg-5 px-xl-10">
+              <div class="d-none d-md-block">
+                <!-- Search Form -->
+                <form id="docsSearch" class="position-relative" data-hs-list-options='{
+                       "searchMenu": true,
+                       "keyboard": true,
+                       "item": "searchTemplate",
+                       "valueNames": ["component", "category", {"name": "link", "attr": "href"}],
+                       "empty": "#searchNoResults"
+                     }'>
+                  <!-- Input Group -->
+                  <div class="input-group input-group-merge navbar-input-group">
+                    <div class="input-group-prepend input-group-text">
+                      <i class="bi-search"></i>
+                    </div>
+
+                    <input type="search" class="search form-control form-control-sm" placeholder="Search in docs" aria-label="Search in docs">
+
+                    <a class="input-group-append input-group-text" href="javascript:;">
+                      <i id="clearSearchResultsIcon" class="bi-x" style="display: none;"></i>
+                    </a>
+                  </div>
+                  <!-- End Input Group -->
+
+                  <!-- List -->
+                  <div class="list dropdown-menu navbar-dropdown-menu-borderless w-100 overflow-auto" style="max-height: 16rem;"></div>
+                  <!-- End List -->
+
+                  <!-- Empty -->
+                  <div id="searchNoResults" style="display: none;">
+                    <div class="text-center p-4">
+                      <img class="mb-3" src="../assets/svg/illustrations/oc-error.svg" alt="Image Description" data-hs-theme-appearance="default" style="width: 7rem;">
+                      <img class="mb-3" src="../assets/svg/illustrations-light/oc-error.svg" alt="Image Description" data-hs-theme-appearance="dark" style="width: 7rem;">
+                      <p class="mb-0">No Results</p>
+                    </div>
+                  </div>
+                  <!-- End Empty -->
+                </form>
+                <!-- End Search Form -->
+
+                <!-- List Item Template -->
+                <div class="d-none">
+                  <div id="searchTemplate" class="dropdown-item">
+                    <a class="d-block link" href="#">
+                      <span class="category d-block fw-normal text-muted mb-1"></span>
+                      <span class="component text-dark"></span>
+                    </a>
+                  </div>
+                </div>
+                <!-- End List Item Template -->
+              </div>
+
+              <!-- Navbar -->
+              <ul class="navbar-nav p-0">
+                <li class="nav-item">
+                  <a class="btn btn-ghost-secondary btn-sm" href="https://htmlstream.com/contact-us" target="_blank">
+                    Get Support <i class="bi-box-arrow-up-right ms-1"></i>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="btn btn-primary btn-sm" href="../index.html">
+                    <i class="bi-eye me-1"></i> Preview Demo
+                  </a>
+                </li>
+              </ul>
+              <!-- End Navbar -->
+            </div>
+          </div>
+          <!-- End Col -->
+        </div>
+        <!-- End Row -->
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== END HEADER ========== -->
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main id="content" role="main">
+    <!-- Navbar -->
+    <nav class="js-nav-scroller navbar navbar-expand-lg navbar-sidebar navbar-vertical navbar-light bg-white border-end" data-hs-nav-scroller-options='{
+            "type": "vertical",
+            "target": ".navbar-nav .active",
+            "offset": 80
+           }'>
+      <!-- Navbar Toggle -->
+      <div class="d-grid flex-grow-1 px-2">
+        <button type="button" class="navbar-toggler btn btn-white" data-bs-toggle="collapse" data-bs-target="#navbarVerticalNavMenu" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbarVerticalNavMenu">
+          <span class="d-flex justify-content-between align-items-center">
+            <span class="h3 mb-0">Nav menu</span>
+
+            <span class="navbar-toggler-default">
+              <i class="bi-list"></i>
+            </span>
+
+            <span class="navbar-toggler-toggled">
+              <i class="bi-x"></i>
+            </span>
+          </span>
+        </button>
+      </div>
+      <!-- End Navbar Toggle -->
+
+      <!-- Navbar Collapse -->
+      <div id="navbarVerticalNavMenu" class="collapse navbar-collapse">
+        <div class="navbar-brand-wrapper border-end" style="height: auto;">
+          <!-- Default Logo -->
+          <div class="d-flex align-items-center mb-3">
+            <a class="navbar-brand" href="index.html" aria-label="Front">
+              <img class="navbar-brand-logo" src="../assets/svg/logos/logo.svg" alt="Logo" data-hs-theme-appearance="default">
+              <img class="navbar-brand-logo" src="../assets/svg/logos-light/logo.svg" alt="Logo" data-hs-theme-appearance="dark">
+            </a>
+            <a class="navbar-brand-badge" href="changelog.html">
+              <span class="badge bg-soft-primary text-primary ms-2">v2.0</span>
+            </a>
+          </div>
+          <!-- End Default Logo -->
+        </div>
+
+        <div class="docs-navbar-sidebar-aside-body navbar-sidebar-aside-body">
+          <ul id="navbarSettings" class="navbar-nav nav nav-vertical nav-tabs nav-tabs-borderless nav-sm">
+            <li class="nav-item">
+              <span class="nav-subtitle">Documentation</span>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="index.html">Introduction</a>
+            </li>
+
+            <li class="nav-item my-2 my-lg-5"></li>
+
+            <li class="nav-item">
+              <span class="nav-subtitle">Getting started</span>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="getting-started.html">Getting Started</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="gulp.html">Gulp</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="darkmode.html">Dark Mode <span class="badge bg-soft-dark text-dark lh-base ms-1">New</span></a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="customization.html">Customization</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="credits.html">Credits</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="changelog.html">Changelog</a>
+            </li>
+
+            <li class="nav-item my-4"></li>
+
+            <li class="nav-item">
+              <span class="nav-subtitle">Design &amp; Graphics</span>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="bs-icons.html">Bootstrap Icons</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="illustrations.html">Illustrations</a>
+            </li>
+
+            <li class="nav-item my-4"></li>
+
+            <li class="nav-item">
+              <span class="nav-subtitle">Components</span>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="accordion.html">Accordion</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="alerts.html">Alerts</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="avatars.html">Avatars</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="badge.html">Badge</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="breadcrumb.html">Breadcrumb</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="buttons.html">Buttons</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="button-group.html">Button Group</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="cards.html">Cards</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="collapse.html">Collapse</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="column-divider.html">Column Divider</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="devices.html">Devices</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="divider.html">Divider</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="dropdowns.html">Dropdowns</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="icons.html">Icons</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="list-group.html">List Group</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="lists.html">Lists</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="legend-indicator.html">Legend Indicator</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="modal.html">Modal</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="offcanvas.html">Offcanvas</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="page-header.html">Page Header</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="pagination.html">Pagination</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="popovers.html">Popovers</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="progress.html">Progress</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="profile.html">Profile</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="shapes.html">Shapes</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="sliding-img.html">Sliding Image</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="spinners.html">Spinners</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="steps.html">Steps</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="tab.html">Tab</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="toasts.html">Toasts</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="tooltips.html">Tooltips</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="typography.html">Typography</a>
+            </li>
+
+            <li class="nav-item my-4"></li>
+
+            <li class="nav-item">
+              <small class="nav-subtitle d-block">Navbars</small>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="navbar.html">Navbar</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="navs.html">Navs</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="mega-menu.html">Mega Menu</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="navbar-vertical-aside.html">Navbar Vertical Aside</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="scrollspy.html">Scrollspy</a>
+            </li>
+
+            <li class="nav-item my-4"></li>
+
+            <li class="nav-item">
+              <small class="nav-subtitle d-block">Tables</small>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="tables.html">Tables</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="datatables.html">Datatables</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="table-sticky-header.html">Sticky Header</a>
+            </li>
+
+            <li class="nav-item my-4"></li>
+
+            <li class="nav-item">
+              <small class="nav-subtitle d-block">Basic forms</small>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="basic-forms.html">Basic Forms</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="checks-and-switches.html">Checks &amp; Switches</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="input-group.html">Input Group</a>
+            </li>
+
+            <li class="nav-item my-4"></li>
+
+            <li class="nav-item">
+              <small class="nav-subtitle">Advanced Forms</small>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="select.html">Advanced Select</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="datepicker.html">Datepicker (Flatpickr)</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="daterangepicker.html">Date Range Picker</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="calendar.html">Calendar (Fullcalendar)</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="file-attachments.html">File Attachments</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="dropzone.html">Drag’ n’ Drop File Uploads</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="quill.html">WYSIWYG Editor</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="quantity-counter.html">Quantity Counter</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="copy-to-clipboard.html">Copy to Clipboard</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="input-mask.html">Input Mask</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="step-forms.html">Step Forms (Wizards)</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="add-field.html">Add Field</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="toggle-password.html">Toggle Password</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="count-characters.html">Count Characters</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="form-search.html">Form Search</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="toggle-switch.html">Toggle Switch</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="google-recaptcha.html">Google reCAPTCHA</a>
+            </li>
+
+            <li class="nav-item my-4"></li>
+
+            <li class="nav-item">
+              <small class="nav-subtitle">Charts</small>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link active" href="chartjs.html">Chart.js</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="counter.html">Counter</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="circles.html">Circles.js (Pie Chart)</a>
+            </li>
+
+            <li class="nav-item my-4"></li>
+
+            <li class="nav-item">
+              <small class="nav-subtitle">Others</small>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="fslightbox.html">Fullscreen Lightbox</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="maps-leaflet.html">Leaflet</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="maps-jsvectormap.html">JSVectorMap</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="sortablejs.html">SortableJS</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="sticky-block.html">Sticky Block</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="go-to.html">Go To</a>
+            </li>
+
+            <li class="nav-item my-4"></li>
+
+            <li class="nav-item">
+              <small class="nav-subtitle d-block">Utilities</small>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="backgrounds.html">Backgrounds</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="borders.html">Borders</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="colors.html">Colors</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="links.html">Links</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="position.html">Position</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="shadows.html">Shadows</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="sizing.html">Sizing</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="spacing.html">Spacing</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="z-index.html">Z-index</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="opacity.html">Opacity</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- End Navbar Collapse -->
+    </nav>
+    <!-- End Navbar -->
+
+    <!-- Content -->
+    <div class="navbar-sidebar-aside-content content-space-1 content-space-md-2 px-lg-5 px-xl-10">
+      <!-- Page Header -->
+      <div class="docs-page-header">
+        <div class="row align-items-center">
+          <div class="col-sm">
+            <h1 class="docs-page-header-title">Chart.js</h1>
+            <p class="docs-page-header-text">Simple yet flexible JavaScript charting for designers &amp; developers.</p>
+            <a class="link" href="https://www.chartjs.org/" target="_blank">Chart.js documentation <i class="bi-box-arrow-up-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <!-- End Page Header -->
+
+      <!-- Heading -->
+      <h2 id="how-to-use" class="hs-docs-heading">
+        How to use <a class="anchorjs-link" href="#how-to-use" aria-label="Anchor" data-anchorjs-icon="#"></a>
+      </h2>
+      <!-- End Heading -->
+
+      <p>Copy-paste the stylesheet <code>&lt;link&gt;</code> into your <code>&lt;head&gt;</code> to load the CSS.</p>
+
+      <pre class="rounded mb-4">
+        <code class="language-html" data-lang="html">
+          &lt;link rel="stylesheet" href="./node_modules/chart.js/dist/Chart.min.css"&gt;
+        </code>
+      </pre>
+
+      <p>Copy-paste the following <code>&lt;script&gt;</code> near the end of your pages under <em><u>JS Implementing Plugins</u></em> to enable it.</p>
+
+      <pre class="rounded mb-4">
+        <code class="language-html" data-lang="html">
+          &lt;script src="./node_modules/chart.js/dist/Chart.min.js"&gt;&lt;/script&gt;
+        </code>
+      </pre>
+
+      <p>Copy-paste the following <code>&lt;script&gt;</code> near the end of your pages under <em><u>JS Implementing Plugins</u></em> to enable it.</p>
+
+      <pre class="rounded mb-4">
+        <code class="language-html" data-lang="html">
+          &lt;script src="./assets/js/hs.chartjs.js"&gt;&lt;/script&gt;
+        </code>
+      </pre>
+
+      <p>Copy-paste the init function under <em><u>JS Plugins Init.</u></em>, before the closing <code>&lt;/body&gt;</code> tag, to enable it.</p>
+
+      <pre class="rounded">
+        <code class="language-html" data-lang="html">
+          &lt;script&gt;
+            (function() {
+              // INITIALIZATION OF CHARTJS
+              // =======================================================
+              document.querySelectorAll('.js-chart').forEach(item => {
+                HSCore.components.HSChartJS.init(item)
+              })
+            });
+          &lt;/script&gt;
+        </code>
+      </pre>
+
+      <!-- Heading -->
+      <h2 id="line-chart" class="hs-docs-heading">
+        Line chart <a class="anchorjs-link" href="#line-chart" aria-label="Anchor" data-anchorjs-icon="#"></a>
+      </h2>
+      <!-- End Heading -->
+
+      <!-- Card -->
+      <div class="card">
+        <!-- Header -->
+        <div class="card-header">
+          <!-- Nav -->
+          <ul class="nav nav-segment" id="navTab1" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="nav-resultTab1" data-bs-toggle="pill" href="#nav-result1" role="tab" aria-controls="nav-result1" aria-selected="true">Preview</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="nav-htmlTab1" data-bs-toggle="pill" href="#nav-html1" role="tab" aria-controls="nav-html1" aria-selected="false">HTML</a>
+            </li>
+          </ul>
+          <!-- End Nav -->
+        </div>
+        <!-- End Header -->
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="navTabContent1">
+          <div class="tab-pane fade p-4 show active" id="nav-result1" role="tabpanel" aria-labelledby="nav-resultTab1">
+            <div class="row align-items-sm-center mb-4">
+              <div class="col-sm mb-3 mb-sm-0">
+                <div class="d-flex align-items-center">
+                  <span class="h1 mb-0">$7,431.14 USD</span>
+                </div>
+              </div>
+
+              <div class="col-sm-auto">
+                <!-- Legend Indicators -->
+                <div class="row font-size-sm">
+                  <div class="col-auto">
+                    <span class="legend-indicator bg-primary"></span> Income
+                  </div>
+                  <div class="col-auto">
+                    <span class="legend-indicator bg-info"></span> Expenses
+                  </div>
+                </div>
+                <!-- End Legend Indicators -->
+              </div>
+            </div>
+            <!-- End Row -->
+
+            <!-- Line Chart -->
+            <div class="chartjs-custom" style="height: 18rem;">
+              <canvas id="project" class="js-chart" data-hs-chartjs-options='{
+                              "type": "line",
+                              "data": {
+                                 "labels": ["Feb","Jan","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+                                 "datasets": [{
+                                  "data": [18,51,60,38,88,50,40,52,88,80,60,70],
+                                  "backgroundColor": "transparent",
+                                  "borderColor": "#377dff",
+                                  "borderWidth": 2,
+                                  "pointRadius": 0,
+                                  "hoverBorderColor": "#377dff",
+                                  "pointBackgroundColor": "#377dff",
+                                  "pointBorderColor": "#fff",
+                                  "pointHoverRadius": 0
+                                },
+                                {
+                                  "data": [27,38,60,77,40,50,49,29,42,27,42,50],
+                                  "backgroundColor": "transparent",
+                                  "borderColor": "#00c9db",
+                                  "borderWidth": 2,
+                                  "pointRadius": 0,
+                                  "hoverBorderColor": "#00c9db",
+                                  "pointBackgroundColor": "#00c9db",
+                                  "pointBorderColor": "#fff",
+                                  "pointHoverRadius": 0
+                                }]
+                              },
+                              "options": {
+                                 "scales": {
+                                    "yAxes": [{
+                                      "gridLines": {
+                                        "color": "#e7eaf3",
+                                        "drawBorder": false,
+                                        "zeroLineColor": "#e7eaf3"
+                                      },
+                                      "ticks": {
+                                        "min": 0,
+                                        "max": 100,
+                                        "stepSize": 20,
+                                        "fontColor": "#97a4af",
+                                        "fontFamily": "Open Sans, sans-serif",
+                                        "padding": 10,
+                                        "postfix": "k"
+                                      }
+                                    }],
+                                    "xAxes": [{
+                                      "gridLines": {
+                                        "display": false,
+                                        "drawBorder": false
+                                      },
+                                      "ticks": {
+                                        "fontSize": 12,
+                                        "fontColor": "#97a4af",
+                                        "fontFamily": "Open Sans, sans-serif",
+                                        "padding": 5
+                                      }
+                                    }]
+                                },
+                                "tooltips": {
+                                  "prefix": "$",
+                                  "postfix": "k",
+                                  "hasIndicator": true,
+                                  "mode": "index",
+                                  "intersect": false,
+                                  "lineMode": true,
+                                  "lineWithLineColor": "rgba(19, 33, 68, 0.075)"
+                                },
+                                "hover": {
+                                  "mode": "nearest",
+                                  "intersect": true
+                                }
+                              }
+                            }'>
+              </canvas>
+            </div>
+            <!-- End Line Chart -->
+          </div>
+
+          <div class="tab-pane fade" id="nav-html1" role="tabpanel" aria-labelledby="nav-htmlTab1">
+            <pre>
+              <code class="language-markup" data-lang="html">
+                &lt;div class="row align-items-sm-center mb-4"&gt;
+                  &lt;div class="col-sm mb-3 mb-sm-0"&gt;
+                    &lt;div class="d-flex align-items-center"&gt;
+                      &lt;span class="h1 mb-0"&gt;$7,431.14 USD&lt;/span&gt;
+
+                      &lt;span class="text-success me-2"&gt;
+                        &lt;i class="tio-trending-up"&gt;&lt;/i&gt; 25.3%
+                      &lt;/span&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+
+                  &lt;div class="col-sm-auto"&gt;
+                    &lt;!-- Legend Indicators --&gt;
+                    &lt;div class="row font-size-sm"&gt;
+                      &lt;div class="col-auto"&gt;
+                        &lt;span class="legend-indicator bg-primary"&gt;&lt;/span&gt; Income
+                      &lt;/div&gt;
+                      &lt;div class="col-auto"&gt;
+                        &lt;span class="legend-indicator bg-info"&gt;&lt;/span&gt; Expenses
+                      &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;!-- End Legend Indicators --&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;!-- End Row --&gt;
+
+                &lt;!-- Line Chart --&gt;
+                &lt;div class="chartjs-custom" style="height: 18rem;"&gt;
+                  &lt;canvas class="js-chart"
+                          data-hs-chartjs-options='{
+                            "type": "line",
+                            "data": {
+                               "labels": ["Feb","Jan","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+                               "datasets": [{
+                                "data": [18,51,60,38,88,50,40,52,88,80,60,70],
+                                "backgroundColor": "transparent",
+                                "borderColor": "#377dff",
+                                "borderWidth": 2,
+                                "pointRadius": 0,
+                                "hoverBorderColor": "#377dff",
+                                "pointBackgroundColor": "#377dff",
+                                "pointBorderColor": "#fff",
+                                "pointHoverRadius": 0
+                              },
+                              {
+                                "data": [27,38,60,77,40,50,49,29,42,27,42,50],
+                                "backgroundColor": "transparent",
+                                "borderColor": "#00c9db",
+                                "borderWidth": 2,
+                                "pointRadius": 0,
+                                "hoverBorderColor": "#00c9db",
+                                "pointBackgroundColor": "#00c9db",
+                                "pointBorderColor": "#fff",
+                                "pointHoverRadius": 0
+                              }]
+                            },
+                            "options": {
+                               "scales": {
+                                  "yAxes": [{
+                                    "gridLines": {
+                                      "color": "#e7eaf3",
+                                      "drawBorder": false,
+                                      "zeroLineColor": "#e7eaf3"
+                                    },
+                                    "ticks": {
+                                      "min": 0,
+                                      "max": 100,
+                                      "stepSize": 20,
+                                      "fontColor": "#97a4af",
+                                      "fontFamily": "Open Sans, sans-serif",
+                                      "padding": 10,
+                                      "postfix": "k"
+                                    }
+                                  }],
+                                  "xAxes": [{
+                                    "gridLines": {
+                                      "display": false,
+                                      "drawBorder": false
+                                    },
+                                    "ticks": {
+                                      "fontSize": 12,
+                                      "fontColor": "#97a4af",
+                                      "fontFamily": "Open Sans, sans-serif",
+                                      "padding": 5
+                                    }
+                                  }]
+                              },
+                              "tooltips": {
+                                "prefix": "$",
+                                "postfix": "k",
+                                "hasIndicator": true,
+                                "mode": "index",
+                                "intersect": false,
+                                "lineMode": true,
+                                "lineWithLineColor": "rgba(19, 33, 68, 0.075)"
+                              },
+                              "hover": {
+                                "mode": "nearest",
+                                "intersect": true
+                              }
+                            }
+                          }'&gt;
+                  &lt;/canvas&gt;
+                &lt;/div&gt;
+                &lt;!-- End Line Chart --&gt;
+              </code>
+            </pre>
+          </div>
+        </div>
+        <!-- End Tab Content -->
+      </div>
+      <!-- End Card -->
+
+      <!-- Heading -->
+      <h2 id="updating-line-chart" class="hs-docs-heading">
+        Updating line chart <a class="anchorjs-link" href="#updating-line-chart" aria-label="Anchor" data-anchorjs-icon="#"></a>
+      </h2>
+      <!-- End Heading -->
+
+      <p>Use <code>"gradientPosition": {"x0": 0, "y0": 0, "x1": 0, "y1": 200}</code> to set position for gradient.</p>
+
+      <!-- Card -->
+      <div class="card">
+        <!-- Header -->
+        <div class="card-header">
+          <!-- Nav -->
+          <ul class="nav nav-segment" id="navTab13" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="nav-resultTab13" data-bs-toggle="pill" href="#nav-result13" role="tab" aria-controls="nav-result13" aria-selected="true">Preview</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="nav-htmlTab13" data-bs-toggle="pill" href="#nav-html13" role="tab" aria-controls="nav-html13" aria-selected="false">HTML</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="nav-jsTab13" data-bs-toggle="pill" href="#nav-js13" role="tab" aria-controls="nav-js13" aria-selected="false">JS</a>
+            </li>
+          </ul>
+          <!-- End Nav -->
+        </div>
+        <!-- End Header -->
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="navTabContent13">
+          <div class="tab-pane fade p-4 show active" id="nav-result13" role="tabpanel" aria-labelledby="nav-resultTab13">
+            <div class="row align-items-sm-center mb-4">
+              <div class="col-sm mb-3 mb-sm-0">
+                <div class="d-flex align-items-center">
+                  <span class="h1 mb-0">$7,431.14 USD</span>
+                </div>
+              </div>
+
+              <div class="col-sm-auto">
+                <!-- Nav -->
+                <ul class="nav nav-segment" id="projectsTab" role="tablist">
+                  <li class="nav-item" data-toggle="chart" data-datasets="0" data-trigger="click" data-action="toggle">
+                    <a class="nav-link active" href="javascript:;" data-bs-toggle="tab">
+                      <span class="legend-indicator bg-primary"></span> This week
+                    </a>
+                  </li>
+                  <li class="nav-item" data-toggle="chart" data-datasets="1" data-trigger="click" data-action="toggle">
+                    <a class="nav-link" href="javascript:;" data-bs-toggle="tab">
+                      <span class="legend-indicator bg-info"></span> Last week
+                    </a>
+                  </li>
+                </ul>
+                <!-- End Nav -->
+              </div>
+            </div>
+            <!-- End Row -->
+
+            <!-- Line Chart -->
+            <div class="chartjs-custom" style="height: 18rem;">
+              <canvas id="updatingLineChart" data-hs-chartjs-options='{
+                              "type": "line",
+                              "data": {
+                                 "labels": ["Feb","Jan","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+                                 "datasets": [{
+                                  "backgroundColor": ["rgba(55, 125, 255, .5)", "rgba(255, 255, 255, .2)"],
+                                  "borderColor": "#377dff",
+                                  "borderWidth": 2,
+                                  "pointRadius": 0,
+                                  "hoverBorderColor": "#377dff",
+                                  "pointBackgroundColor": "#377dff",
+                                  "pointBorderColor": "#fff",
+                                  "pointHoverRadius": 0
+                                },
+                                {
+                                  "backgroundColor": ["rgba(0, 201, 219, .5)", "rgba(255, 255, 255, .2)"],
+                                  "borderColor": "#00c9db",
+                                  "borderWidth": 2,
+                                  "pointRadius": 0,
+                                  "hoverBorderColor": "#00c9db",
+                                  "pointBackgroundColor": "#00c9db",
+                                  "pointBorderColor": "#fff",
+                                  "pointHoverRadius": 0
+                                }]
+                              },
+                              "options": {
+                                "gradientPosition": {"y1": 200},
+                                 "scales": {
+                                    "yAxes": [{
+                                      "gridLines": {
+                                        "color": "#e7eaf3",
+                                        "drawBorder": false,
+                                        "zeroLineColor": "#e7eaf3"
+                                      },
+                                      "ticks": {
+                                        "min": 0,
+                                        "max": 100,
+                                        "stepSize": 20,
+                                        "fontColor": "#97a4af",
+                                        "fontFamily": "Open Sans, sans-serif",
+                                        "padding": 10,
+                                        "postfix": "k"
+                                      }
+                                    }],
+                                    "xAxes": [{
+                                      "gridLines": {
+                                        "display": false,
+                                        "drawBorder": false
+                                      },
+                                      "ticks": {
+                                        "fontSize": 12,
+                                        "fontColor": "#97a4af",
+                                        "fontFamily": "Open Sans, sans-serif",
+                                        "padding": 5
+                                      }
+                                    }]
+                                },
+                                "tooltips": {
+                                  "prefix": "$",
+                                  "postfix": "k",
+                                  "hasIndicator": true,
+                                  "mode": "index",
+                                  "intersect": false,
+                                  "lineMode": true,
+                                  "lineWithLineColor": "rgba(19, 33, 68, 0.075)"
+                                },
+                                "hover": {
+                                  "mode": "nearest",
+                                  "intersect": true
+                                }
+                              }
+                            }'>
+              </canvas>
+            </div>
+            <!-- End Line Chart -->
+          </div>
+
+          <div class="tab-pane fade" id="nav-html13" role="tabpanel" aria-labelledby="nav-htmlTab13">
+            <pre>
+              <code class="language-markup" data-lang="html">
+                &lt;div class="row align-items-sm-center mb-4"&gt;
+                  &lt;div class="col-sm mb-3 mb-sm-0"&gt;
+                    &lt;div class="d-flex align-items-center"&gt;
+                      &lt;span class="h1 mb-0"&gt;$7,431.14 USD&lt;/span&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+
+                  &lt;div class="col-sm-auto"&gt;
+                    &lt;!-- Nav --&gt;
+                    &lt;ul class="nav nav-segment" id="projectsTab" role="tablist"&gt;
+                      &lt;li class="nav-item" data-toggle="chart" data-datasets="0" data-trigger="click" data-action="toggle"&gt;
+                        &lt;a class="nav-link active" href="javascript:;" data-bs-toggle="tab"&gt;
+                          &lt;span class="legend-indicator bg-primary"&gt;&lt;/span&gt; This week
+                        &lt;/a&gt;
+                      &lt;/li&gt;
+                      &lt;li class="nav-item" data-toggle="chart" data-datasets="1" data-trigger="click" data-action="toggle"&gt;
+                        &lt;a class="nav-link" href="javascript:;" data-bs-toggle="tab"&gt;
+                          &lt;span class="legend-indicator bg-info"&gt;&lt;/span&gt; Last week
+                        &lt;/a&gt;
+                      &lt;/li&gt;
+                    &lt;/ul&gt;
+                    &lt;!-- End Nav --&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;!-- End Row --&gt;
+
+                &lt;!-- Line Chart --&gt;
+                &lt;div class="chartjs-custom" style="height: 18rem;"&gt;
+                  &lt;canvas id="updatingLineChart"
+                          data-hs-chartjs-options='{
+                            "type": "line",
+                            "data": {
+                               "labels": ["Feb","Jan","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+                               "datasets": [{
+                                "backgroundColor": ["rgba(55, 125, 255, .5)", "rgba(255, 255, 255, .2)"],
+                                "borderColor": "#377dff",
+                                "borderWidth": 2,
+                                "pointRadius": 0,
+                                "hoverBorderColor": "#377dff",
+                                "pointBackgroundColor": "#377dff",
+                                "pointBorderColor": "#fff",
+                                "pointHoverRadius": 0
+                              },
+                              {
+                                "backgroundColor": ["rgba(0, 201, 219, .5)", "rgba(255, 255, 255, .2)"],
+                                "borderColor": "#00c9db",
+                                "borderWidth": 2,
+                                "pointRadius": 0,
+                                "hoverBorderColor": "#00c9db",
+                                "pointBackgroundColor": "#00c9db",
+                                "pointBorderColor": "#fff",
+                                "pointHoverRadius": 0
+                              }]
+                            },
+                            "options": {
+                              "gradientPosition": {"y1": 200},
+                               "scales": {
+                                  "yAxes": [{
+                                    "gridLines": {
+                                      "color": "#e7eaf3",
+                                      "drawBorder": false,
+                                      "zeroLineColor": "#e7eaf3"
+                                    },
+                                    "ticks": {
+                                      "min": 0,
+                                      "max": 100,
+                                      "stepSize": 20,
+                                      "fontColor": "#97a4af",
+                                      "fontFamily": "Open Sans, sans-serif",
+                                      "padding": 10,
+                                      "postfix": "k"
+                                    }
+                                  }],
+                                  "xAxes": [{
+                                    "gridLines": {
+                                      "display": false,
+                                      "drawBorder": false
+                                    },
+                                    "ticks": {
+                                      "fontSize": 12,
+                                      "fontColor": "#97a4af",
+                                      "fontFamily": "Open Sans, sans-serif",
+                                      "padding": 5
+                                    }
+                                  }]
+                              },
+                              "tooltips": {
+                                "prefix": "$",
+                                "postfix": "k",
+                                "hasIndicator": true,
+                                "mode": "index",
+                                "intersect": false,
+                                "lineMode": true,
+                                "lineWithLineColor": "rgba(19, 33, 68, 0.075)"
+                              },
+                              "hover": {
+                                "mode": "nearest",
+                                "intersect": true
+                              }
+                            }
+                          }'&gt;
+                  &lt;/canvas&gt;
+                &lt;/div&gt;
+                &lt;!-- End Line Chart --&gt;
+              </code>
+            </pre>
+          </div>
+
+          <div class="tab-pane fade" id="nav-js13" role="tabpanel" aria-labelledby="nav-jsTab13">
+            <pre>
+              <code class="language-markup" data-lang="html">
+                &lt;script&gt;
+                  (function () {
+                    // INITIALIZATION OF UPDATING CHARTJS
+                    // =======================================================
+                    const updatingChartDatasets = [
+                      [
+                        [18,51,60,38,88,50,40,52,88,80,60,70],
+                        [27,38,60,77,40,50,49,29,42,27,42,50]
+                      ],
+                      [
+                        [77,40,50,49,27,38,60,42,50,29,42,27],
+                        [60,38,18,51,88,50,40,52,60,70,88,80]
+                      ]
+                    ]
+
+                    HSCore.components.HSChartJS.init(document.querySelector('#updatingLineChart'), {
+                      data: {
+                        datasets: [
+                          {
+                            data: updatingChartDatasets[0][0]
+                          },
+                          {
+                            data: updatingChartDatasets[0][1]
+                          }
+                        ]
+                      }
+                    });
+
+                    const updatingLineChart = HSCore.components.HSChartJS.getItem('updatingLineChart')
+
+                    // Call when tab is clicked
+                    document.querySelectorAll('[data-toggle="chart"]').forEach(item => {
+                      item.addEventListener('click', e => {
+                        let keyDataset = e.currentTarget.getAttribute('data-datasets')
+
+                        // Update datasets for chart
+                        updatingLineChart.data.datasets.forEach(function(dataset, key) {
+                          dataset.data = updatingChartDatasets[keyDataset][key];
+                        })
+                        updatingLineChart.update()
+                      })
+                    })
+                  })()
+                &lt;/script&gt;
+              </code>
+            </pre>
+          </div>
+        </div>
+        <!-- End Tab Content -->
+      </div>
+      <!-- End Card -->
+
+      <!-- Heading -->
+      <h2 id="strong-line-chart" class="hs-docs-heading">
+        Strong line chart <a class="anchorjs-link" href="#strong-line-chart" aria-label="Anchor" data-anchorjs-icon="#"></a>
+      </h2>
+      <!-- End Heading -->
+
+      <!-- Card -->
+      <div class="card">
+        <!-- Header -->
+        <div class="card-header">
+          <!-- Nav -->
+          <ul class="nav nav-segment" id="navTab3" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="nav-resultTab3" data-bs-toggle="pill" href="#nav-result3" role="tab" aria-controls="nav-result3" aria-selected="true">Preview</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="nav-htmlTab3" data-bs-toggle="pill" href="#nav-html3" role="tab" aria-controls="nav-html3" aria-selected="false">HTML</a>
+            </li>
+          </ul>
+          <!-- End Nav -->
+        </div>
+        <!-- End Header -->
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="navTabContent3">
+          <div class="tab-pane fade p-4 show active" id="nav-result3" role="tabpanel" aria-labelledby="nav-resultTab3">
+            <!-- Chartjs -->
+            <div class="chartjs-custom" style="height: 18rem;">
+              <canvas id="strong-line-chart" class="js-chart" data-hs-chartjs-options='{
+                          "type": "line",
+                          "data": {
+                             "labels": ["6:00 PM","6:00 PM","6:01 PM","6:01 PM","6:02 PM","6:02 PM","6:03 PM","6:03 PM","6:04 PM","6:04 PM","6:05 PM","6:05 PM","6:06 PM","6:06 PM","6:07 PM","6:07 PM","6:08 PM","6:08 PM","6:09 PM","6:09 PM","6:10 PM","6:10 PM","6:11 PM","6:11 PM","6:12 PM","6:12 PM","6:13 PM","6:13 PM","6:14 PM","6:14 PM","6:15 PM","6:15 PM","6:16 PM","6:16 PM","6:17 PM","6:17 PM","6:18 PM","6:18 PM","6:19 PM","6:19 PM","6:20 PM","6:20 PM","6:21 PM","6:21 PM","6:22 PM","6:22 PM","6:23 PM","6:23 PM","6:24 PM","6:24 PM","6:25 PM","6:25 PM","6:26 PM","6:26 PM","6:27 PM","6:27 PM","6:28 PM","6:28 PM","6:29 PM","6:29 PM","6:30 PM","6:30 PM","6:31 PM","6:31 PM","6:32 PM","6:32 PM","6:33 PM","6:33 PM","6:34 PM","6:34 PM","6:35 PM","6:35 PM","6:36 PM","6:36 PM","6:37 PM","6:37 PM","6:38 PM","6:38 PM","6:39 PM","6:39 PM","6:40 PM","6:40 PM","6:41 PM","6:41 PM","6:42 PM","6:42 PM","6:43 PM","6:43 PM","6:44 PM","6:44 PM","6:45 PM","6:45 PM","6:46 PM","6:46 PM","6:47 PM","6:47 PM","6:48 PM","6:48 PM","6:49 PM","6:49 PM","6:50 PM","6:50 PM","6:51 PM","6:51 PM","6:52 PM","6:52 PM","6:53 PM","6:53 PM","6:54 PM","6:54 PM","6:55 PM","6:55 PM","6:56 PM","6:56 PM","6:57 PM","6:57 PM","6:58 PM","6:58 PM","6:59 PM","6:59 PM"],
+                             "datasets": [{
+                              "data": [8516, 8520, 8547, 8575, 8588, 8604, 8601, 8595, 8617, 8612, 8607, 8632, 8636, 8641, 8638, 8641, 8624, 8633, 8643, 8630, 8646, 8662, 8670, 8667, 8658, 8660, 8657, 8648, 8645, 8647, 8652, 8637, 8647, 8640, 8667, 8658, 8660, 8713, 8703, 8705, 8747, 8620, 8635, 8680, 8675, 8667, 8620, 8645, 8645, 8625, 8635, 8645, 8665, 8660, 8670, 8640, 8650, 8640, 8635, 8645, 8695, 8703, 8705, 8640, 8650, 8640, 8620, 8610, 8640, 8630, 8610, 8620, 8600, 8590, 8610, 8620, 8600, 8610, 8605, 8610, 8660, 8665, 8664, 8640, 8645, 8650, 8610, 8620, 8630, 8670, 8675, 8674, 8660, 8665, 8650, 8610, 8612, 8607, 8632, 8636, 8641, 8638, 8641, 8638, 8641, 8624, 8633, 8643, 8630, 8646, 8662, 8638, 8641, 8624, 8633, 8643, 8630, 8646, 8632, 8636],
+                              "backgroundColor": "transparent",
+                              "borderColor": "#377dff",
+                              "borderWidth": 2,
+                              "pointBackgroundColor": "transparent",
+                              "pointHoverBackgroundColor": "#377dff",
+                              "pointBorderColor": "transparent",
+                              "pointHoverBorderColor": "#377dff",
+                              "pointRadius": 2,
+                              "pointHoverRadius": 2,
+                              "lineTension": 0
+                            }]
+                          },
+                          "options": {
+                             "scales": {
+                              "yAxes": [{
+                                "display": false
+                              }],
+                              "xAxes": [{
+                                "gridLines": {
+                                  "display": false,
+                                  "drawBorder": false
+                                },
+                                "ticks": {
+                                  "labelOffset": 40,
+                                  "maxTicksLimit": 6,
+                                  "padding": 20,
+                                  "maxRotation": 0,
+                                  "minRotation": 0,
+                                  "fontSize": 12,
+                                  "fontColor": "rgba(0, 0, 0, 0.4)"
+                                }
+                              }]
+                            },
+                            "hover": {
+                               "mode": "nearest",
+                               "intersect": false
+                             },
+                            "tooltips": {
+                              "prefix": "$",
+                              "intersect": false
+                            }
+                          }
+                        }'>
+              </canvas>
+            </div>
+            <!-- End Chartjs -->
+          </div>
+
+          <div class="tab-pane fade" id="nav-html3" role="tabpanel" aria-labelledby="nav-htmlTab3">
+            <pre>
+              <code class="language-markup" data-lang="html">
+                &lt;!-- Chartjs --&gt;
+                &lt;div class="chartjs-custom" style="height: 18rem;"&gt;
+                  &lt;canvas class="js-chart"
+                      data-hs-chartjs-options='{
+                        "type": "line",
+                        "data": {
+                           "labels": ["6:00 PM","6:00 PM","6:01 PM","6:01 PM","6:02 PM","6:02 PM","6:03 PM","6:03 PM","6:04 PM","6:04 PM","6:05 PM","6:05 PM","6:06 PM","6:06 PM","6:07 PM","6:07 PM","6:08 PM","6:08 PM","6:09 PM","6:09 PM","6:10 PM","6:10 PM","6:11 PM","6:11 PM","6:12 PM","6:12 PM","6:13 PM","6:13 PM","6:14 PM","6:14 PM","6:15 PM","6:15 PM","6:16 PM","6:16 PM","6:17 PM","6:17 PM","6:18 PM","6:18 PM","6:19 PM","6:19 PM","6:20 PM","6:20 PM","6:21 PM","6:21 PM","6:22 PM","6:22 PM","6:23 PM","6:23 PM","6:24 PM","6:24 PM","6:25 PM","6:25 PM","6:26 PM","6:26 PM","6:27 PM","6:27 PM","6:28 PM","6:28 PM","6:29 PM","6:29 PM","6:30 PM","6:30 PM","6:31 PM","6:31 PM","6:32 PM","6:32 PM","6:33 PM","6:33 PM","6:34 PM","6:34 PM","6:35 PM","6:35 PM","6:36 PM","6:36 PM","6:37 PM","6:37 PM","6:38 PM","6:38 PM","6:39 PM","6:39 PM","6:40 PM","6:40 PM","6:41 PM","6:41 PM","6:42 PM","6:42 PM","6:43 PM","6:43 PM","6:44 PM","6:44 PM","6:45 PM","6:45 PM","6:46 PM","6:46 PM","6:47 PM","6:47 PM","6:48 PM","6:48 PM","6:49 PM","6:49 PM","6:50 PM","6:50 PM","6:51 PM","6:51 PM","6:52 PM","6:52 PM","6:53 PM","6:53 PM","6:54 PM","6:54 PM","6:55 PM","6:55 PM","6:56 PM","6:56 PM","6:57 PM","6:57 PM","6:58 PM","6:58 PM","6:59 PM","6:59 PM"],
+                           "datasets": [{
+                            "data": [8516, 8520, 8547, 8575, 8588, 8604, 8601, 8595, 8617, 8612, 8607, 8632, 8636, 8641, 8638, 8641, 8624, 8633, 8643, 8630, 8646, 8662, 8670, 8667, 8658, 8660, 8657, 8648, 8645, 8647, 8652, 8637, 8647, 8640, 8667, 8658, 8660, 8713, 8703, 8705, 8747, 8620, 8635, 8680, 8675, 8667, 8620, 8645, 8645, 8625, 8635, 8645, 8665, 8660, 8670, 8640, 8650, 8640, 8635, 8645, 8695, 8703, 8705, 8640, 8650, 8640, 8620, 8610, 8640, 8630, 8610, 8620, 8600, 8590, 8610, 8620, 8600, 8610, 8605, 8610, 8660, 8665, 8664, 8640, 8645, 8650, 8610, 8620, 8630, 8670, 8675, 8674, 8660, 8665, 8650, 8610, 8612, 8607, 8632, 8636, 8641, 8638, 8641, 8638, 8641, 8624, 8633, 8643, 8630, 8646, 8662, 8638, 8641, 8624, 8633, 8643, 8630, 8646, 8632, 8636],
+                            "backgroundColor": "transparent",
+                            "borderColor": "#377dff",
+                            "borderWidth": 2,
+                            "pointBackgroundColor": "transparent",
+                            "pointHoverBackgroundColor": "#377dff",
+                            "pointBorderColor": "transparent",
+                            "pointHoverBorderColor": "#377dff",
+                            "pointRadius": 2,
+                            "pointHoverRadius": 2,
+                            "lineTension": 0
+                          }]
+                        },
+                        "options": {
+                           "scales": {
+                            "yAxes": [{
+                              "display": false
+                            }],
+                            "xAxes": [{
+                              "gridLines": {
+                                "display": false,
+                                "drawBorder": false
+                              },
+                              "ticks": {
+                                "labelOffset": 40,
+                                "maxTicksLimit": 6,
+                                "padding": 20,
+                                "maxRotation": 0,
+                                "minRotation": 0,
+                                "fontSize": 12,
+                                "fontColor": "rgba(0, 0, 0, 0.4)"
+                              }
+                            }]
+                          },
+                          "hover": {
+                             "mode": "nearest",
+                             "intersect": false
+                           },
+                          "tooltips": {
+                            "prefix": "$",
+                            "intersect": false
+                          }
+                        }
+                      }'&gt;
+                  &lt;/canvas&gt;
+                &lt;/div&gt;
+                &lt;!-- End Chartjs --&gt;
+              </code>
+            </pre>
+          </div>
+        </div>
+        <!-- End Tab Content -->
+      </div>
+      <!-- End Card -->
+
+      <!-- Heading -->
+      <h2 id="line-chart-with-grid" class="hs-docs-heading">
+        Line chart with grid <a class="anchorjs-link" href="#line-chart-with-grid" aria-label="Anchor" data-anchorjs-icon="#"></a>
+      </h2>
+      <!-- End Heading -->
+
+      <!-- Card -->
+      <div class="card">
+        <!-- Header -->
+        <div class="card-header">
+          <!-- Nav -->
+          <ul class="nav nav-segment" id="navTab4" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="nav-resultTab4" data-bs-toggle="pill" href="#nav-result4" role="tab" aria-controls="nav-result4" aria-selected="true">Preview</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="nav-htmlTab4" data-bs-toggle="pill" href="#nav-html4" role="tab" aria-controls="nav-html4" aria-selected="false">HTML</a>
+            </li>
+          </ul>
+          <!-- End Nav -->
+        </div>
+        <!-- End Header -->
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="navTabContent4">
+          <div class="tab-pane fade p-4 show active" id="nav-result4" role="tabpanel" aria-labelledby="nav-resultTab4">
+            <!-- Legend Indicators -->
+            <div class="row justify-content-end mb-5">
+              <div class="col-auto">
+                <span class="legend-indicator bg-primary"></span> Income
+              </div>
+              <div class="col-auto">
+                <span class="legend-indicator"></span> Expenses
+              </div>
+            </div>
+            <!-- End Legend Indicators -->
+
+            <!-- Chartjs -->
+            <div class="chartjs-custom" style="height: 300px;">
+              <canvas id="line-chart-with-grid" class="js-chart" data-hs-chartjs-options='{
+                          "type": "line",
+                          "data": {
+                             "labels": ["1AM","2AM","3AM","4AM","5AM","6AM","7AM","8AM","9AM","10AM","11AM","12AM","1PM","2PM","3PM","4PM","5PM","6PM","7PM","8PM","9PM","10PM","11PM","12PM"],
+                             "datasets": [{
+                              "data": [30,30,30,32,33,34,35,34,33,32,31,30,30,30,30,32,33,34,35,34,33,32,31,30],
+                              "backgroundColor": "transparent",
+                              "borderColor": "#eeeef1",
+                              "borderWidth": 2,
+                              "pointRadius": 0,
+                              "pointHoverRadius": 1,
+                              "lineTension": 0,
+                              "borderDash": [10,5]
+                            },
+                            {
+                              "data": [70,52,47,58,38,40,57,40,31,53,60,43,70,52,47,58,38,40,57,40,31,53,60,43],
+                              "backgroundColor": "transparent",
+                              "borderColor": "#377dff",
+                              "borderWidth": 2,
+                              "pointRadius": 0,
+                              "pointHoverRadius": 1,
+                              "lineTension": 0
+                            }]
+                          },
+                          "options": {
+                             "scales": {
+                              "yAxes": [{
+                                "gridLines": {
+                                  "drawBorder": false,
+                                  "color": "#eeeef1"
+                                },
+                                "ticks": {
+                                  "min": 25,
+                                  "max": 150,
+                                  "stepSize": 25,
+                                  "fontColor": "rgba(0, 0, 0, 0.4)",
+                                  "padding": 10
+                                }
+                              }],
+                              "xAxes": [{
+                                "gridLines": {
+                                  "display": false,
+                                  "drawBorder": false
+                                },
+                                "ticks": {
+                                  "labelOffset": 20,
+                                  "maxTicksLimit": 11,
+                                  "padding": 20,
+                                  "maxRotation": 0,
+                                  "minRotation": 0,
+                                  "fontSize": 12,
+                                  "fontColor": "rgba(0, 0, 0, 0.4)"
+                                }
+                              }]
+                            },
+                            "hover": {
+                               "mode": "nearest",
+                               "intersect": false
+                             },
+                            "tooltips": {
+                              "prefix": "$",
+                              "intersect": false
+                            }
+                          }
+                        }'>
+              </canvas>
+            </div>
+            <!-- End Chartjs -->
+          </div>
+
+          <div class="tab-pane fade" id="nav-html4" role="tabpanel" aria-labelledby="nav-htmlTab4">
+            <pre>
+              <code class="language-markup" data-lang="html">
+                &lt;!-- Legend Indicators --&gt;
+                &lt;div class="row justify-content-end mb-5"&gt;
+                  &lt;div class="col-auto"&gt;
+                    &lt;span class="legend-indicator bg-primary"&gt;&lt;/span&gt; Income
+                  &lt;/div&gt;
+                  &lt;div class="col-auto"&gt;
+                    &lt;span class="legend-indicator"&gt;&lt;/span&gt; Expenses
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;!-- End Legend Indicators --&gt;
+
+                &lt;!-- Chartjs --&gt;
+                &lt;div class="chartjs-custom" style="height: 300px;"&gt;
+                  &lt;canvas class="js-chart"
+                      data-hs-chartjs-options='{
+                        "type": "line",
+                        "data": {
+                           "labels": ["1AM","2AM","3AM","4AM","5AM","6AM","7AM","8AM","9AM","10AM","11AM","12AM","1PM","2PM","3PM","4PM","5PM","6PM","7PM","8PM","9PM","10PM","11PM","12PM"],
+                           "datasets": [{
+                            "data": [30,30,30,32,33,34,35,34,33,32,31,30,30,30,30,32,33,34,35,34,33,32,31,30],
+                            "backgroundColor": "transparent",
+                            "borderColor": "#eeeef1",
+                            "borderWidth": 2,
+                            "pointRadius": 0,
+                            "pointHoverRadius": 1,
+                            "lineTension": 0,
+                            "borderDash": [10,5]
+                          },
+                          {
+                            "data": [70,52,47,58,38,40,57,40,31,53,60,43,70,52,47,58,38,40,57,40,31,53,60,43],
+                            "backgroundColor": "transparent",
+                            "borderColor": "#377dff",
+                            "borderWidth": 2,
+                            "pointRadius": 0,
+                            "pointHoverRadius": 1,
+                            "lineTension": 0
+                          }]
+                        },
+                        "options": {
+                           "scales": {
+                            "yAxes": [{
+                              "gridLines": {
+                                "drawBorder": false,
+                                "color": "#eeeef1"
+                              },
+                              "ticks": {
+                                "min": 25,
+                                "max": 150,
+                                "stepSize": 25,
+                                "fontColor": "rgba(0, 0, 0, 0.4)",
+                                "padding": 10
+                              }
+                            }],
+                            "xAxes": [{
+                              "gridLines": {
+                                "display": false,
+                                "drawBorder": false
+                              },
+                              "ticks": {
+                                "labelOffset": 20,
+                                "maxTicksLimit": 11,
+                                "padding": 20,
+                                "maxRotation": 0,
+                                "minRotation": 0,
+                                "fontSize": 12,
+                                "fontColor": "rgba(0, 0, 0, 0.4)"
+                              }
+                            }]
+                          },
+                          "hover": {
+                             "mode": "nearest",
+                             "intersect": false
+                           },
+                          "tooltips": {
+                            "prefix": "$",
+                            "intersect": false
+                          }
+                        }
+                      }'&gt;
+                  &lt;/canvas&gt;
+                &lt;/div&gt;
+                &lt;!-- End Chartjs --&gt;
+              </code>
+            </pre>
+          </div>
+        </div>
+        <!-- End Tab Content -->
+      </div>
+      <!-- End Card -->
+
+      <!-- Heading -->
+      <h2 id="bar-chart" class="hs-docs-heading">
+        Bar chart <a class="anchorjs-link" href="#bar-chart" aria-label="Anchor" data-anchorjs-icon="#"></a>
+      </h2>
+      <!-- End Heading -->
+
+      <!-- Card -->
+      <div class="card">
+        <!-- Header -->
+        <div class="card-header">
+          <!-- Nav -->
+          <ul class="nav nav-segment" id="navTab5" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="nav-resultTab5" data-bs-toggle="pill" href="#nav-result5" role="tab" aria-controls="nav-result5" aria-selected="true">Preview</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="nav-htmlTab5" data-bs-toggle="pill" href="#nav-html5" role="tab" aria-controls="nav-html5" aria-selected="false">HTML</a>
+            </li>
+          </ul>
+          <!-- End Nav -->
+        </div>
+        <!-- End Header -->
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="navTabContent5">
+          <div class="tab-pane fade p-4 show active" id="nav-result5" role="tabpanel" aria-labelledby="nav-resultTab5">
+            <div class="d-flex align-items-center mb-4">
+              <span class="h1 mb-0">35%</span>
+            </div>
+
+            <!-- Bar Chart -->
+            <div class="chartjs-custom">
+              <canvas id="ecommerce-sales" class="js-chart" style="height: 20rem;" data-hs-chartjs-options='{
+                              "type": "bar",
+                              "data": {
+                                "labels": ["May 1", "May 2", "May 3", "May 4", "May 5", "May 6", "May 7", "May 8", "May 9", "May 10"],
+                                "datasets": [{
+                                  "data": [200, 300, 290, 350, 150, 350, 300, 100, 125, 220],
+                                  "backgroundColor": "#377dff",
+                                  "hoverBackgroundColor": "#377dff",
+                                  "borderColor": "#377dff"
+                                }]
+                              },
+                              "options": {
+                                "scales": {
+                                  "yAxes": [{
+                                    "gridLines": {
+                                      "color": "#e7eaf3",
+                                      "drawBorder": false,
+                                      "zeroLineColor": "#e7eaf3"
+                                    },
+                                    "ticks": {
+                                      "beginAtZero": true,
+                                      "stepSize": 100,
+                                      "fontSize": 12,
+                                      "fontColor": "#97a4af",
+                                      "fontFamily": "Open Sans, sans-serif",
+                                      "padding": 10,
+                                      "postfix": "$"
+                                    }
+                                  }],
+                                  "xAxes": [{
+                                    "gridLines": {
+                                      "display": false,
+                                      "drawBorder": false
+                                    },
+                                    "ticks": {
+                                      "fontSize": 12,
+                                      "fontColor": "#97a4af",
+                                      "fontFamily": "Open Sans, sans-serif",
+                                      "padding": 5
+                                    },
+                                    "categoryPercentage": 0.5,
+                                    "maxBarThickness": "10"
+                                  }]
+                                },
+                                "cornerRadius": 2,
+                                "tooltips": {
+                                  "prefix": "$",
+                                  "hasIndicator": true,
+                                  "mode": "index",
+                                  "intersect": false
+                                },
+                                "hover": {
+                                  "mode": "nearest",
+                                  "intersect": true
+                                }
+                              }
+                            }'></canvas>
+            </div>
+            <!-- End Bar Chart -->
+          </div>
+
+          <div class="tab-pane fade" id="nav-html5" role="tabpanel" aria-labelledby="nav-htmlTab5">
+            <pre>
+              <code class="language-markup" data-lang="html">
+                &lt;div class="d-flex align-items-center mb-4"&gt;
+                  &lt;span class="h1 mb-0"&gt;35%&lt;/span&gt;
+                  &lt;span class="text-success me-2"&gt;
+                    &lt;i class="tio-trending-up"&gt;&lt;/i&gt; 25.3%
+                  &lt;/span&gt;
+                &lt;/div&gt;
+
+                &lt;!-- Bar Chart --&gt;
+                &lt;div class="chartjs-custom"&gt;
+                  &lt;canvas class="js-chart" style="height: 20rem;"
+                          data-hs-chartjs-options='{
+                            "type": "bar",
+                            "data": {
+                              "labels": ["May 1", "May 2", "May 3", "May 4", "May 5", "May 6", "May 7", "May 8", "May 9", "May 10"],
+                              "datasets": [{
+                                "data": [200, 300, 290, 350, 150, 350, 300, 100, 125, 220],
+                                "backgroundColor": "#377dff",
+                                "hoverBackgroundColor": "#377dff",
+                                "borderColor": "#377dff"
+                              }]
+                            },
+                            "options": {
+                              "scales": {
+                                "yAxes": [{
+                                  "gridLines": {
+                                    "color": "#e7eaf3",
+                                    "drawBorder": false,
+                                    "zeroLineColor": "#e7eaf3"
+                                  },
+                                  "ticks": {
+                                    "beginAtZero": true,
+                                    "stepSize": 100,
+                                    "fontSize": 12,
+                                    "fontColor": "#97a4af",
+                                    "fontFamily": "Open Sans, sans-serif",
+                                    "padding": 10,
+                                    "postfix": "$"
+                                  }
+                                }],
+                                "xAxes": [{
+                                  "gridLines": {
+                                    "display": false,
+                                    "drawBorder": false
+                                  },
+                                  "ticks": {
+                                    "fontSize": 12,
+                                    "fontColor": "#97a4af",
+                                    "fontFamily": "Open Sans, sans-serif",
+                                    "padding": 5
+                                  },
+                                  "categoryPercentage": 0.5,
+                                  "maxBarThickness": "10"
+                                }]
+                              },
+                              "cornerRadius": 2,
+                              "tooltips": {
+                                "prefix": "$",
+                                "hasIndicator": true,
+                                "mode": "index",
+                                "intersect": false
+                              },
+                              "hover": {
+                                "mode": "nearest",
+                                "intersect": true
+                              }
+                            }
+                          }'&gt;&lt;/canvas&gt;
+                &lt;/div&gt;
+                &lt;!-- End Bar Chart --&gt;
+              </code>
+            </pre>
+          </div>
+        </div>
+        <!-- End Tab Content -->
+      </div>
+      <!-- End Card -->
+
+      <!-- Heading -->
+      <h2 id="updating-bar-chart" class="hs-docs-heading">
+        Updating bar chart <a class="anchorjs-link" href="#updating-bar-chart" aria-label="Anchor" data-anchorjs-icon="#"></a>
+      </h2>
+      <!-- End Heading -->
+
+      <!-- Card -->
+      <div class="card">
+        <!-- Header -->
+        <div class="card-header">
+          <!-- Nav -->
+          <ul class="nav nav-segment" id="navTab6" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="nav-resultTab6" data-bs-toggle="pill" href="#nav-result6" role="tab" aria-controls="nav-result6" aria-selected="true">Preview</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="nav-htmlTab6" data-bs-toggle="pill" href="#nav-html6" role="tab" aria-controls="nav-html6" aria-selected="false">HTML</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="nav-jsTab6" data-bs-toggle="pill" href="#nav-js6" role="tab" aria-controls="nav-js6" aria-selected="false">JS</a>
+            </li>
+          </ul>
+          <!-- End Nav -->
+        </div>
+        <!-- End Header -->
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="navTabContent6">
+          <div class="tab-pane fade p-4 show active" id="nav-result6" role="tabpanel" aria-labelledby="nav-resultTab6">
+            <div class="d-flex justify-content-end mb-5">
+              <!-- Nav -->
+              <ul class="nav nav-segment" id="expensesTabEg1" role="tablist">
+                <li class="nav-item" data-toggle="chart-bar" data-datasets="thisWeek" data-trigger="click" data-action="toggle">
+                  <a class="nav-link active" href="javascript:;" data-bs-toggle="tab">This week</a>
+                </li>
+                <li class="nav-item" data-toggle="chart-bar" data-datasets="lastWeek" data-trigger="click" data-action="toggle">
+                  <a class="nav-link" href="javascript:;" data-bs-toggle="tab">Last week</a>
+                </li>
+              </ul>
+              <!-- End Nav -->
+            </div>
+
+            <!-- Bar Chart -->
+            <div class="chartjs-custom">
+              <canvas id="updatingBarChart" style="height: 20rem;" data-hs-chartjs-options='{
+                              "type": "bar",
+                              "data": {
+                                "labels": ["May 1", "May 2", "May 3", "May 4", "May 5", "May 6", "May 7", "May 8", "May 9", "May 10"],
+                                "datasets": [{
+                                  "data": [200, 300, 290, 350, 150, 350, 300, 100, 125, 220],
+                                  "backgroundColor": "#377dff",
+                                  "hoverBackgroundColor": "#377dff",
+                                  "borderColor": "#377dff"
+                                },
+                                {
+                                  "data": [150, 230, 382, 204, 169, 290, 300, 100, 300, 225, 120],
+                                  "backgroundColor": "#e7eaf3",
+                                  "borderColor": "#e7eaf3"
+                                }]
+                              },
+                              "options": {
+                                "scales": {
+                                  "yAxes": [{
+                                    "gridLines": {
+                                      "color": "#e7eaf3",
+                                      "drawBorder": false,
+                                      "zeroLineColor": "#e7eaf3"
+                                    },
+                                    "ticks": {
+                                      "beginAtZero": true,
+                                      "stepSize": 100,
+                                      "fontSize": 12,
+                                      "fontColor": "#97a4af",
+                                      "fontFamily": "Open Sans, sans-serif",
+                                      "padding": 10,
+                                      "postfix": "$"
+                                    }
+                                  }],
+                                  "xAxes": [{
+                                    "gridLines": {
+                                      "display": false,
+                                      "drawBorder": false
+                                    },
+                                    "ticks": {
+                                      "fontSize": 12,
+                                      "fontColor": "#97a4af",
+                                      "fontFamily": "Open Sans, sans-serif",
+                                      "padding": 5
+                                    },
+                                    "categoryPercentage": 0.5,
+                                    "maxBarThickness": "10"
+                                  }]
+                                },
+                                "cornerRadius": 2,
+                                "tooltips": {
+                                  "prefix": "$",
+                                  "hasIndicator": true,
+                                  "mode": "index",
+                                  "intersect": false
+                                },
+                                "hover": {
+                                  "mode": "nearest",
+                                  "intersect": true
+                                }
+                              }
+                            }'></canvas>
+            </div>
+            <!-- End Bar Chart -->
+          </div>
+
+          <div class="tab-pane fade" id="nav-html6" role="tabpanel" aria-labelledby="nav-htmlTab6">
+            <pre>
+              <code class="language-markup" data-lang="html">
+                &lt;div class="d-flex justify-content-end mb-5"&gt;
+                  &lt;!-- Nav --&gt;
+                  &lt;ul class="nav nav-segment" id="expensesTabEg1" role="tablist"&gt;
+                    &lt;li class="nav-item" data-toggle="chart-bar" data-datasets="thisWeek" data-trigger="click" data-action="toggle"&gt;
+                      &lt;a class="nav-link active" href="javascript:;" data-bs-toggle="tab"&gt;This week&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="nav-item" data-toggle="chart-bar" data-datasets="lastWeek" data-trigger="click" data-action="toggle"&gt;
+                      &lt;a class="nav-link" href="javascript:;" data-bs-toggle="tab"&gt;Last week&lt;/a&gt;
+                    &lt;/li&gt;
+                  &lt;/ul&gt;
+                  &lt;!-- End Nav --&gt;
+                &lt;/div&gt;
+
+                &lt;!-- Bar Chart --&gt;
+                &lt;div class="chartjs-custom"&gt;
+                  &lt;canvas id="updatingBarChart" style="height: 20rem;"
+                          data-hs-chartjs-options='{
+                            "type": "bar",
+                            "data": {
+                              "labels": ["May 1", "May 2", "May 3", "May 4", "May 5", "May 6", "May 7", "May 8", "May 9", "May 10"],
+                              "datasets": [{
+                                "data": [200, 300, 290, 350, 150, 350, 300, 100, 125, 220],
+                                "backgroundColor": "#377dff",
+                                "hoverBackgroundColor": "#377dff",
+                                "borderColor": "#377dff"
+                              },
+                              {
+                                "data": [150, 230, 382, 204, 169, 290, 300, 100, 300, 225, 120],
+                                "backgroundColor": "#e7eaf3",
+                                "borderColor": "#e7eaf3"
+                              }]
+                            },
+                            "options": {
+                              "scales": {
+                                "yAxes": [{
+                                  "gridLines": {
+                                    "color": "#e7eaf3",
+                                    "drawBorder": false,
+                                    "zeroLineColor": "#e7eaf3"
+                                  },
+                                  "ticks": {
+                                    "beginAtZero": true,
+                                    "stepSize": 100,
+                                    "fontSize": 12,
+                                    "fontColor": "#97a4af",
+                                    "fontFamily": "Open Sans, sans-serif",
+                                    "padding": 10,
+                                    "postfix": "$"
+                                  }
+                                }],
+                                "xAxes": [{
+                                  "gridLines": {
+                                    "display": false,
+                                    "drawBorder": false
+                                  },
+                                  "ticks": {
+                                    "fontSize": 12,
+                                    "fontColor": "#97a4af",
+                                    "fontFamily": "Open Sans, sans-serif",
+                                    "padding": 5
+                                  },
+                                  "categoryPercentage": 0.5,
+                                  "maxBarThickness": "10"
+                                }]
+                              },
+                              "cornerRadius": 2,
+                              "tooltips": {
+                                "prefix": "$",
+                                "hasIndicator": true,
+                                "mode": "index",
+                                "intersect": false
+                              },
+                              "hover": {
+                                "mode": "nearest",
+                                "intersect": true
+                              }
+                            }
+                          }'&gt;&lt;/canvas&gt;
+                &lt;/div&gt;
+                &lt;!-- End Bar Chart --&gt;
+              </code>
+            </pre>
+          </div>
+
+          <div class="tab-pane fade" id="nav-js6" role="tabpanel" aria-labelledby="nav-jsTab6">
+            <pre>
+              <code class="language-markup" data-lang="html">
+                &lt;script&gt;
+                  (function () {
+                    HSCore.components.HSChartJS.init(document.querySelector('#updatingBarChart'));
+
+                    const updatingBarChart = HSCore.components.HSChartJS.getItem('updatingBarChart')
+
+                    // Call when tab is clicked
+                    document.querySelectorAll('[data-toggle="chart-bar"]').forEach(item => {
+                      item.addEventListener('click', e => {
+                        let keyDataset = e.currentTarget.getAttribute('data-datasets')
+
+                        if (keyDataset === 'lastWeek') {
+                          updatingBarChart.data.labels = ["Apr 22", "Apr 23", "Apr 24", "Apr 25", "Apr 26", "Apr 27", "Apr 28", "Apr 29", "Apr 30", "Apr 31"];
+                          updatingBarChart.data.datasets = [
+                            {
+                              "data": [120, 250, 300, 200, 300, 290, 350, 100, 125, 320],
+                              "backgroundColor": "#377dff",
+                              "hoverBackgroundColor": "#377dff",
+                              "borderColor": "#377dff"
+                            },
+                            {
+                              "data": [250, 130, 322, 144, 129, 300, 260, 120, 260, 245, 110],
+                              "backgroundColor": "#e7eaf3",
+                              "borderColor": "#e7eaf3"
+                            }
+                          ];
+                          updatingBarChart.update();
+                        } else {
+                          updatingBarChart.data.labels = ["May 1", "May 2", "May 3", "May 4", "May 5", "May 6", "May 7", "May 8", "May 9", "May 10"];
+                          updatingBarChart.data.datasets = [
+                            {
+                              "data": [200, 300, 290, 350, 150, 350, 300, 100, 125, 220],
+                              "backgroundColor": "#377dff",
+                              "hoverBackgroundColor": "#377dff",
+                              "borderColor": "#377dff"
+                            },
+                            {
+                              "data": [150, 230, 382, 204, 169, 290, 300, 100, 300, 225, 120],
+                              "backgroundColor": "#e7eaf3",
+                              "borderColor": "#e7eaf3"
+                            }
+                          ]
+                          updatingBarChart.update();
+                        }
+                      })
+                    })
+                  })()
+                &lt;/script&gt;
+              </code>
+            </pre>
+          </div>
+        </div>
+        <!-- End Tab Content -->
+      </div>
+      <!-- End Card -->
+
+      <!-- Heading -->
+      <h2 id="doughnut-chart" class="hs-docs-heading">
+        Doughnut chart <a class="anchorjs-link" href="#doughnut-chart" aria-label="Anchor" data-anchorjs-icon="#"></a>
+      </h2>
+      <!-- End Heading -->
+
+      <!-- Card -->
+      <div class="card">
+        <!-- Header -->
+        <div class="card-header">
+          <!-- Nav -->
+          <ul class="nav nav-segment" id="navTab7" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="nav-resultTab7" data-bs-toggle="pill" href="#nav-result7" role="tab" aria-controls="nav-result7" aria-selected="true">Preview</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="nav-htmlTab7" data-bs-toggle="pill" href="#nav-html7" role="tab" aria-controls="nav-html7" aria-selected="false">HTML</a>
+            </li>
+          </ul>
+          <!-- End Nav -->
+        </div>
+        <!-- End Header -->
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="navTabContent7">
+          <div class="tab-pane fade p-4 show active" id="nav-result7" role="tabpanel" aria-labelledby="nav-resultTab7">
+            <!-- Pie Chart -->
+            <div class="chartjs-custom mb-3 mb-sm-5" style="height: 14rem;">
+              <canvas id="doughnut-chart" class="js-chart" data-hs-chartjs-options='{
+                              "type": "doughnut",
+                              "data": {
+                                "labels": ["USD", "USD", "USD"],
+                                "datasets": [{
+                                  "data": [45, 25, 30],
+                                  "backgroundColor": ["#377dff", "#00c9db", "#e7eaf3"],
+                                  "borderWidth": 5,
+                                  "hoverBorderColor": "#fff"
+                                }]
+                              },
+                              "options": {
+                                "cutoutPercentage": 80,
+                                "tooltips": {
+                                  "postfix": "k",
+                                  "hasIndicator": true,
+                                  "mode": "index",
+                                  "intersect": false
+                                },
+                                "hover": {
+                                  "mode": "nearest",
+                                  "intersect": true
+                                }
+                              }
+                            }'></canvas>
+            </div>
+            <!-- End Pie Chart -->
+
+            <!-- Legend Indicators -->
+            <div class="row justify-content-center">
+              <div class="col-auto mb-3 mb-sm-0">
+                <span class="card-title h4">$2,332.00</span>
+                <span class="legend-indicator bg-primary"></span> Marketing
+              </div>
+
+              <div class="col-auto mb-3 mb-sm-0">
+                <span class="card-title h4">$10,452.00</span>
+                <span class="legend-indicator bg-info"></span> Bills
+              </div>
+
+              <div class="col-auto">
+                <span class="card-title h4">$56,856.00</span>
+                <span class="legend-indicator"></span> Others
+              </div>
+            </div>
+            <!-- End Legend Indicators -->
+          </div>
+
+          <div class="tab-pane fade" id="nav-html7" role="tabpanel" aria-labelledby="nav-htmlTab7">
+            <pre>
+              <code class="language-markup" data-lang="html">
+                &lt;!-- Pie Chart --&gt;
+                &lt;div class="chartjs-custom mb-3 mb-sm-5" style="height: 14rem;"&gt;
+                  &lt;canvas class="js-chart"
+                          data-hs-chartjs-options='{
+                            "type": "doughnut",
+                            "data": {
+                              "labels": ["USD", "USD", "USD"],
+                              "datasets": [{
+                                "data": [45, 25, 30],
+                                "backgroundColor": ["#377dff", "#00c9db", "#e7eaf3"],
+                                "borderWidth": 5,
+                                "hoverBorderColor": "#fff"
+                              }]
+                            },
+                            "options": {
+                              "cutoutPercentage": 80,
+                              "tooltips": {
+                                "postfix": "k",
+                                "hasIndicator": true,
+                                "mode": "index",
+                                "intersect": false
+                              },
+                              "hover": {
+                                "mode": "nearest",
+                                "intersect": true
+                              }
+                            }
+                          }'&gt;&lt;/canvas&gt;
+                &lt;/div&gt;
+                &lt;!-- End Pie Chart --&gt;
+
+                &lt;!-- Legend Indicators --&gt;
+                &lt;div class="row justify-content-center"&gt;
+                  &lt;div class="col-auto mb-3 mb-sm-0"&gt;
+                    &lt;span class="card-title h4"&gt;$2,332.00&lt;/span&gt;
+                    &lt;span class="legend-indicator bg-primary"&gt;&lt;/span&gt; Marketing
+                  &lt;/div&gt;
+
+                  &lt;div class="col-auto mb-3 mb-sm-0"&gt;
+                    &lt;span class="card-title h4"&gt;$10,452.00&lt;/span&gt;
+                    &lt;span class="legend-indicator bg-info"&gt;&lt;/span&gt; Bills
+                  &lt;/div&gt;
+
+                  &lt;div class="col-auto"&gt;
+                    &lt;span class="card-title h4"&gt;$56,856.00&lt;/span&gt;
+                    &lt;span class="legend-indicator"&gt;&lt;/span&gt; Others
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;!-- End Legend Indicators --&gt;
+              </code>
+            </pre>
+          </div>
+        </div>
+        <!-- End Tab Content -->
+      </div>
+      <!-- End Card -->
+
+      <!-- Heading -->
+      <h2 id="updating-doughnut-chart" class="hs-docs-heading">
+        Updating doughnut chart <a class="anchorjs-link" href="#updating-doughnut-chart" aria-label="Anchor" data-anchorjs-icon="#"></a>
+      </h2>
+      <!-- End Heading -->
+
+      <!-- Card -->
+      <div class="card">
+        <!-- Header -->
+        <div class="card-header">
+          <!-- Nav -->
+          <ul class="nav nav-segment" id="navTab8" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="nav-resultTab8" data-bs-toggle="pill" href="#nav-result8" role="tab" aria-controls="nav-result8" aria-selected="true">Preview</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="nav-htmlTab8" data-bs-toggle="pill" href="#nav-html8" role="tab" aria-controls="nav-html8" aria-selected="false">HTML</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="nav-jsTab8" data-bs-toggle="pill" href="#nav-js8" role="tab" aria-controls="nav-js8" aria-selected="false">JS</a>
+            </li>
+          </ul>
+          <!-- End Nav -->
+        </div>
+        <!-- End Header -->
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="navTabContent8">
+          <div class="tab-pane fade p-4 show active" id="nav-result8" role="tabpanel" aria-labelledby="nav-resultTab8">
+            <div class="d-flex justify-content-end mb-3">
+              <!-- Nav -->
+              <ul class="nav nav-segment" id="expensesTabEg2" role="tablist">
+                <li class="nav-item" data-toggle="chart-doughnut" data-datasets="0" data-trigger="click" data-action="toggle">
+                  <a class="nav-link active" href="javascript:;" data-bs-toggle="tab">This week</a>
+                </li>
+                <li class="nav-item" data-toggle="chart-doughnut" data-datasets="1" data-trigger="click" data-action="toggle">
+                  <a class="nav-link" href="javascript:;" data-bs-toggle="tab">Last week</a>
+                </li>
+              </ul>
+              <!-- End Nav -->
+            </div>
+
+            <!-- Pie Chart -->
+            <div class="chartjs-custom mb-3 mb-sm-5" style="height: 14rem;">
+              <canvas id="updatingDoughnutChart" data-hs-chartjs-options='{
+                              "type": "doughnut",
+                              "data": {
+                                "labels": ["USD", "USD", "USD"],
+                                "datasets": [{
+                                  "backgroundColor": ["#377dff", "#00c9db", "#e7eaf3"],
+                                  "borderWidth": 5,
+                                  "hoverBorderColor": "#fff"
+                                }]
+                              },
+                              "options": {
+                                "cutoutPercentage": 80,
+                                "tooltips": {
+                                  "postfix": "k",
+                                  "hasIndicator": true,
+                                  "mode": "index",
+                                  "intersect": false
+                                },
+                                "hover": {
+                                  "mode": "nearest",
+                                  "intersect": true
+                                }
+                              }
+                            }'></canvas>
+            </div>
+            <!-- End Pie Chart -->
+
+            <!-- Legend Indicators -->
+            <div class="row justify-content-center">
+              <div class="col-auto mb-3 mb-sm-0">
+                <span class="card-title h4">$2,332.00</span>
+                <span class="legend-indicator bg-primary"></span> Marketing
+              </div>
+
+              <div class="col-auto mb-3 mb-sm-0">
+                <span class="card-title h4">$10,452.00</span>
+                <span class="legend-indicator bg-info"></span> Bills
+              </div>
+
+              <div class="col-auto">
+                <span class="card-title h4">$56,856.00</span>
+                <span class="legend-indicator"></span> Others
+              </div>
+            </div>
+            <!-- End Legend Indicators -->
+          </div>
+
+          <div class="tab-pane fade" id="nav-html8" role="tabpanel" aria-labelledby="nav-htmlTab8">
+            <pre>
+              <code class="language-markup" data-lang="html">
+                &lt;div class="d-flex justify-content-end mb-3"&gt;
+                  &lt;!-- Nav --&gt;
+                  &lt;ul class="nav nav-segment" id="expensesTabEg2" role="tablist"&gt;
+                    &lt;li class="nav-item" data-toggle="chart-doughnut" data-datasets="0" data-trigger="click" data-action="toggle"&gt;
+                      &lt;a class="nav-link active" href="javascript:;" data-bs-toggle="tab"&gt;This week&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="nav-item" data-toggle="chart-doughnut" data-datasets="1" data-trigger="click" data-action="toggle"&gt;
+                      &lt;a class="nav-link" href="javascript:;" data-bs-toggle="tab"&gt;Last week&lt;/a&gt;
+                    &lt;/li&gt;
+                  &lt;/ul&gt;
+                  &lt;!-- End Nav --&gt;
+                &lt;/div&gt;
+
+                &lt;!-- Pie Chart --&gt;
+                &lt;div class="chartjs-custom mb-3 mb-sm-5" style="height: 14rem;"&gt;
+                  &lt;canvas id="updatingDoughnutChart"
+                          data-hs-chartjs-options='{
+                            "type": "doughnut",
+                            "data": {
+                              "labels": ["USD", "USD", "USD"],
+                              "datasets": [{
+                                "backgroundColor": ["#377dff", "#00c9db", "#e7eaf3"],
+                                "borderWidth": 5,
+                                "hoverBorderColor": "#fff"
+                              }]
+                            },
+                            "options": {
+                              "cutoutPercentage": 80,
+                              "tooltips": {
+                                "postfix": "k",
+                                "hasIndicator": true,
+                                "mode": "index",
+                                "intersect": false
+                              },
+                              "hover": {
+                                "mode": "nearest",
+                                "intersect": true
+                              }
+                            }
+                          }'&gt;&lt;/canvas&gt;
+                &lt;/div&gt;
+                &lt;!-- End Pie Chart --&gt;
+
+                &lt;!-- Legend Indicators --&gt;
+                &lt;div class="row justify-content-center"&gt;
+                  &lt;div class="col-auto mb-3 mb-sm-0"&gt;
+                    &lt;span class="card-title h4"&gt;$2,332.00&lt;/span&gt;
+                    &lt;span class="legend-indicator bg-primary"&gt;&lt;/span&gt; Marketing
+                  &lt;/div&gt;
+
+                  &lt;div class="col-auto mb-3 mb-sm-0"&gt;
+                    &lt;span class="card-title h4"&gt;$10,452.00&lt;/span&gt;
+                    &lt;span class="legend-indicator bg-info"&gt;&lt;/span&gt; Bills
+                  &lt;/div&gt;
+
+                  &lt;div class="col-auto"&gt;
+                    &lt;span class="card-title h4"&gt;$56,856.00&lt;/span&gt;
+                    &lt;span class="legend-indicator"&gt;&lt;/span&gt; Others
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;!-- End Legend Indicators --&gt;
+              </code>
+            </pre>
+          </div>
+
+          <div class="tab-pane fade" id="nav-js8" role="tabpanel" aria-labelledby="nav-jsTab8">
+            <pre>
+              <code class="language-markup" data-lang="html">
+                &lt;script&gt;
+                  (function () {
+                    HSCore.components.HSChartJS.init(document.querySelector('#updatingDoughnutChart'));
+
+                    // Datasets for chart, can be loaded from AJAX request
+                    var updatingDoughnutChartDatasets = [
+                      [
+                        [45, 25, 30]
+                      ],
+                      [
+                        [35, 50, 15]
+                      ]
+                    ]
+
+                    const updatingDoughnutChart = HSCore.components.HSChartJS.getItem('updatingDoughnutChart')
+
+                    // Set datasets for chart when page is loaded
+                    updatingDoughnutChart.data.datasets.forEach(function(dataset, key) {
+                      dataset.data = updatingDoughnutChartDatasets[0][key];
+                    });
+                    updatingDoughnutChart.update();
+
+                    // Call when tab is clicked
+                    document.querySelectorAll('[data-toggle="chart-doughnut"]').forEach(item => {
+                      item.addEventListener('click', e => {
+                        let keyDataset = e.currentTarget.getAttribute('data-datasets')
+
+                        // Update datasets for chart
+                        updatingDoughnutChart.data.datasets.forEach(function(dataset, key) {
+                          dataset.data = updatingDoughnutChartDatasets[keyDataset][key];
+                        });
+                        updatingDoughnutChart.update();
+                      })
+                    })
+                  })()
+                &lt;/script&gt;
+              </code>
+            </pre>
+          </div>
+        </div>
+        <!-- End Tab Content -->
+      </div>
+      <!-- End Card -->
+
+      <!-- Heading -->
+      <h2 id="half-cicle-chart" class="hs-docs-heading">
+        Half circle chart <a class="anchorjs-link" href="#half-cicle-chart" aria-label="Anchor" data-anchorjs-icon="#"></a>
+      </h2>
+      <!-- End Heading -->
+
+      <!-- Card -->
+      <div class="card">
+        <!-- Header -->
+        <div class="card-header">
+          <!-- Nav -->
+          <ul class="nav nav-segment" id="navTab9" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="nav-resultTab9" data-bs-toggle="pill" href="#nav-result9" role="tab" aria-controls="nav-result9" aria-selected="true">Preview</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="nav-htmlTab9" data-bs-toggle="pill" href="#nav-html9" role="tab" aria-controls="nav-html9" aria-selected="false">HTML</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="nav-jsTab9" data-bs-toggle="pill" href="#nav-js9" role="tab" aria-controls="nav-js9" aria-selected="false">JS</a>
+            </li>
+          </ul>
+          <!-- End Nav -->
+        </div>
+        <!-- End Header -->
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="navTabContent9">
+          <div class="tab-pane fade p-4 show active" id="nav-result9" role="tabpanel" aria-labelledby="nav-resultTab9">
+            <!-- Chart Half -->
+            <div class="chartjs-doughnut-custom" style="height: 12rem;">
+              <canvas id="doughnutHalfChart" class="js-chartjs-doughnut-half" data-hs-chartjs-options='{
+                            "type": "doughnut",
+                            "data": {
+                              "labels": ["Current status", "Goal"],
+                              "datasets": [{
+                                "data": [64, 35],
+                                "backgroundColor": ["#377dff", "rgba(55, 125, 255, 0.35)"],
+                                "borderWidth": 4,
+                                "hoverBorderColor": "#ffffff"
+                              }]
+                            }
+                          }'></canvas>
+
+              <div class="chartjs-doughnut-custom-stat">
+                <small class="text-cap">Project balance</small>
+                <span class="h1">$150,238.00</span>
+              </div>
+            </div>
+            <!-- End Chart Half -->
+          </div>
+
+          <div class="tab-pane fade" id="nav-html9" role="tabpanel" aria-labelledby="nav-htmlTab9">
+            <pre>
+              <code class="language-markup" data-lang="html">
+                &lt;!-- Chart Half --&gt;
+                &lt;div class="chartjs-doughnut-custom" style="height: 12rem;"&gt;
+                  &lt;canvas class="js-chartjs-doughnut-half"
+                          data-hs-chartjs-options='{
+                          "type": "doughnut",
+                          "data": {
+                            "labels": ["Current status", "Goal"],
+                            "datasets": [{
+                              "data": [64, 35],
+                              "backgroundColor": ["#377dff", "rgba(55, 125, 255, 0.35)"],
+                              "borderWidth": 4,
+                              "hoverBorderColor": "#ffffff"
+                            }]
+                          }
+                        }'&gt;&lt;/canvas&gt;
+
+                  &lt;div class="chartjs-doughnut-custom-stat"&gt;
+                    &lt;small class="text-cap"&gt;Project balance&lt;/small&gt;
+                    &lt;span class="h1"&gt;$150,238.00&lt;/span&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;!-- End Chart Half --&gt;
+              </code>
+            </pre>
+          </div>
+
+          <div class="tab-pane fade" id="nav-js9" role="tabpanel" aria-labelledby="nav-jsTab9">
+            <pre>
+              <code class="language-markup" data-lang="html">
+                &lt;script&gt;
+                  (function () {
+                    HSCore.components.HSChartJS.init(document.querySelector('.js-chartjs-doughnut-half'), {
+                      options: {
+                        tooltips: {
+                          postfix: "%"
+                        },
+                        cutoutPercentage: 85,
+                        rotation: 1 * Math.PI,
+                        circumference: 1 * Math.PI
+                      }
+                    });
+                  });
+                &lt;/script&gt;
+              </code>
+            </pre>
+          </div>
+        </div>
+        <!-- End Tab Content -->
+      </div>
+      <!-- End Card -->
+
+      <!-- Heading -->
+      <h2 id="updating-half-cicle-chart" class="hs-docs-heading">
+        Updating half circle chart <a class="anchorjs-link" href="#updating-half-cicle-chart" aria-label="Anchor" data-anchorjs-icon="#"></a>
+      </h2>
+      <!-- End Heading -->
+
+      <!-- Card -->
+      <div class="card">
+        <!-- Header -->
+        <div class="card-header">
+          <!-- Nav -->
+          <ul class="nav nav-segment" id="navTab12" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="nav-resultTab12" data-bs-toggle="pill" href="#nav-result12" role="tab" aria-controls="nav-result12" aria-selected="true">Preview</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="nav-htmlTab12" data-bs-toggle="pill" href="#nav-html12" role="tab" aria-controls="nav-html12" aria-selected="false">HTML</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="nav-jsTab12" data-bs-toggle="pill" href="#nav-js12" role="tab" aria-controls="nav-js12" aria-selected="false">JS</a>
+            </li>
+          </ul>
+          <!-- End Nav -->
+        </div>
+        <!-- End Header -->
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="navTabContent12">
+          <div class="tab-pane fade p-4 show active" id="nav-result12" role="tabpanel" aria-labelledby="nav-resultTab12">
+            <div class="d-flex justify-content-end mb-5">
+              <!-- Checkbox Switch -->
+              <div class="form-check form-switch form-switch-between">
+                <input id="updatingBarChartControl" class="form-check-input" type="checkbox">
+              </div>
+              <!-- End Checkbox Switch -->
+            </div>
+
+            <!-- Chart Half -->
+            <div class="chartjs-doughnut-custom" style="height: 12rem;">
+              <canvas id="updatingDoughnutHalfChart" class="js-chartjs-doughnut-half-dynamic" data-hs-chartjs-options='{
+                            "type": "doughnut",
+                            "data": {
+                              "labels": ["Current status", "Goal"],
+                              "datasets": [{
+                                "data": [64, 35],
+                                "backgroundColor": ["#377dff", "rgba(55, 125, 255, 0.35)"],
+                                "borderWidth": 4,
+                                "hoverBorderColor": "#ffffff"
+                              }]
+                            }
+                          }'></canvas>
+
+              <div class="chartjs-doughnut-custom-stat">
+                <small class="text-cap">Project balance</small>
+                <span id="js-chartjs-half-balance" class="h1">$150,238.00</span>
+              </div>
+            </div>
+            <!-- End Chart Half -->
+          </div>
+
+          <div class="tab-pane fade" id="nav-html12" role="tabpanel" aria-labelledby="nav-htmlTab12">
+            <pre>
+              <code class="language-markup" data-lang="html">
+                &lt;div class="d-flex justify-content-end mb-5"&gt;
+                 &lt;!-- Checkbox Switch --&gt;
+                  &lt;div class=&quot;form-check form-switch form-switch-between&quot;&gt;
+                    &lt;input id=&quot;updatingBarChartControl&quot; class=&quot;form-check-input&quot; type=&quot;checkbox&quot;&gt;
+                  &lt;/div&gt;
+                  &lt;!-- End Checkbox Switch --&gt;
+                &lt;/div&gt;
+
+                &lt;!-- Chart Half --&gt;
+                &lt;div class="chartjs-doughnut-custom" style="height: 12rem;"&gt;
+                  &lt;canvas id="updatingDoughnutHalfChart" class="js-chartjs-doughnut-half-dynamic"
+                          data-hs-chartjs-options='{
+                          "type": "doughnut",
+                          "data": {
+                            "labels": ["Current status", "Goal"],
+                            "datasets": [{
+                              "data": [64, 35],
+                              "backgroundColor": ["#377dff", "rgba(55, 125, 255, 0.35)"],
+                              "borderWidth": 4,
+                              "hoverBorderColor": "#ffffff"
+                            }]
+                          }
+                        }'&gt;&lt;/canvas&gt;
+
+                  &lt;div class="chartjs-doughnut-custom-stat"&gt;
+                    &lt;small class="text-cap"&gt;Project balance&lt;/small&gt;
+                    &lt;span class="h1"&gt;$150,238.00&lt;/span&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;!-- End Chart Half --&gt;
+              </code>
+            </pre>
+          </div>
+
+          <div class="tab-pane fade" id="nav-js12" role="tabpanel" aria-labelledby="nav-jsTab12">
+            <pre>
+              <code class="language-markup" data-lang="html">
+                &lt;script&gt;
+                  (function () {
+                    HSCore.components.HSChartJS.init(document.querySelector('.js-chartjs-doughnut-half-dynamic'), {
+                      options: {
+                        tooltips: {
+                          postfix: "%"
+                        },
+                        cutoutPercentage: 85,
+                        rotation: 1 * Math.PI,
+                        circumference: 1 * Math.PI
+                      }
+                    });
+
+                    const halfChart = HSCore.components.HSChartJS.getItem('updatingDoughnutHalfChart')
+
+                    document.querySelector('#updatingBarChartControl').addEventListener("change", e => {
+                      let $balance = document.querySelector('#js-chartjs-half-balance')
+                      if (e.target.checked) {
+                        halfChart.data.datasets[0].data[1] = 90
+                        $balance.innerHTML = "$110,351.00"
+                      } else {
+                        halfChart.data.datasets[0].data[1] = 35
+                        $balance.innerHTML = "$150,238.00"
+                      }
+
+                      halfChart.update()
+                    })
+                  })()
+                &lt;/script&gt;
+              </code>
+            </pre>
+          </div>
+        </div>
+        <!-- End Tab Content -->
+      </div>
+      <!-- End Card -->
+
+      <!-- Heading -->
+      <h2 id="bubble-chart" class="hs-docs-heading">
+        Bubble chart <a class="anchorjs-link" href="#bubble-chart" aria-label="Anchor" data-anchorjs-icon="#"></a>
+      </h2>
+      <!-- End Heading -->
+
+      <!-- Card -->
+      <div class="card">
+        <!-- Header -->
+        <div class="card-header">
+          <!-- Nav -->
+          <ul class="nav nav-segment" id="navTab10" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="nav-resultTab10" data-bs-toggle="pill" href="#nav-result10" role="tab" aria-controls="nav-result10" aria-selected="true">Preview</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="nav-htmlTab10" data-bs-toggle="pill" href="#nav-html10" role="tab" aria-controls="nav-html10" aria-selected="false">HTML</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="nav-jsTab10" data-bs-toggle="pill" href="#nav-js10" role="tab" aria-controls="nav-js10" aria-selected="false">JS</a>
+            </li>
+          </ul>
+          <!-- End Nav -->
+        </div>
+        <!-- End Header -->
+
+        <!-- Alert -->
+        <div class="alert alert-soft-dark card-alert" role="alert">
+          This example uses <a class="alert-link" href="https://chartjs-plugin-datalabels.netlify.app/" target="_blank">Datalabels plugin for Chart.js <i class="tio-open-in-new"></i></a> library.
+        </div>
+        <!-- End Alert -->
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="navTabContent10">
+          <div class="tab-pane fade p-4 show active" id="nav-result10" role="tabpanel" aria-labelledby="nav-resultTab10">
+            <!-- Chart -->
+            <div class="chartjs-custom mx-auto" style="height: 20rem;">
+              <canvas class="js-chart-datalabels" data-hs-chartjs-options='{
+                              "type": "bubble",
+                              "data": {
+                                "datasets": [
+                                  {
+                                    "label": "Label 1",
+                                    "data": [
+                                      {"x": 55, "y": 65, "r": 99}
+                                    ],
+                                    "color": "#fff",
+                                    "backgroundColor": "rgba(55, 125, 255, 0.9)",
+                                    "borderColor": "transparent"
+                                  },
+                                  {
+                                    "label": "Label 2",
+                                    "data": [
+                                      {"x": 33, "y": 42, "r": 65}
+                                    ],
+                                    "color": "#fff",
+                                    "backgroundColor": "rgba(100, 0, 214, 0.8)",
+                                    "borderColor": "transparent"
+                                  },
+                                  {
+                                    "label": "Label 3",
+                                    "data": [
+                                      {"x": 46, "y": 26, "r": 38}
+                                    ],
+                                    "color": "#fff",
+                                    "backgroundColor": "#00c9db",
+                                    "borderColor": "transparent"
+                                  }
+                                ]
+                              },
+                              "options": {
+                                "scales": {
+                                  "yAxes": [{
+                                    "gridLines": {
+                                      "display": false
+                                    },
+                                    "ticks": {
+                                      "display": false,
+                                      "max": 100,
+                                      "beginAtZero": true
+                                    }
+                                  }],
+                                  "xAxes": [{
+                                  "gridLines": {
+                                      "display": false
+                                    },
+                                    "ticks": {
+                                      "display": false,
+                                      "max": 100,
+                                      "beginAtZero": true
+                                    }
+                                  }]
+                                },
+                                "tooltips": false
+                              }
+                            }'></canvas>
+            </div>
+            <!-- End Chart -->
+
+            <!-- Legend Indicators -->
+            <div class="row justify-content-center">
+              <div class="col-auto">
+                <span class="legend-indicator bg-primary"></span> New
+              </div>
+
+              <div class="col-auto">
+                <span class="legend-indicator" style="background-color: #7000f2;"></span> Pending
+              </div>
+
+              <div class="col-auto">
+                <span class="legend-indicator bg-info"></span> Failed
+              </div>
+            </div>
+            <!-- End Legend Indicators -->
+          </div>
+
+          <div class="tab-pane fade" id="nav-html10" role="tabpanel" aria-labelledby="nav-htmlTab10">
+            <pre>
+              <code class="language-markup" data-lang="html">
+                &lt;!-- Chart --&gt;
+                &lt;div class="chartjs-custom mx-auto" style="height: 20rem;"&gt;
+                  &lt;canvas class="js-chart-datalabels"
+                          data-hs-chartjs-options='{
+                            "type": "bubble",
+                            "data": {
+                              "datasets": [
+                                {
+                                  "label": "Label 1",
+                                  "data": [
+                                    {"x": 55, "y": 65, "r": 99}
+                                  ],
+                                  "color": "#fff",
+                                  "backgroundColor": "rgba(55, 125, 255, 0.9)",
+                                  "borderColor": "transparent"
+                                },
+                                {
+                                  "label": "Label 2",
+                                  "data": [
+                                    {"x": 33, "y": 42, "r": 65}
+                                  ],
+                                  "color": "#fff",
+                                  "backgroundColor": "rgba(100, 0, 214, 0.8)",
+                                  "borderColor": "transparent"
+                                },
+                                {
+                                  "label": "Label 3",
+                                  "data": [
+                                    {"x": 46, "y": 26, "r": 38}
+                                  ],
+                                  "color": "#fff",
+                                  "backgroundColor": "#00c9db",
+                                  "borderColor": "transparent"
+                                }
+                              ]
+                            },
+                            "options": {
+                              "scales": {
+                                "yAxes": [{
+                                  "gridLines": {
+                                    "display": false
+                                  },
+                                  "ticks": {
+                                    "display": false,
+                                    "max": 100,
+                                    "beginAtZero": true
+                                  }
+                                }],
+                                "xAxes": [{
+                                "gridLines": {
+                                    "display": false
+                                  },
+                                  "ticks": {
+                                    "display": false,
+                                    "max": 100,
+                                    "beginAtZero": true
+                                  }
+                                }]
+                              },
+                              "tooltips": false
+                            }
+                          }'&gt;&lt;/canvas&gt;
+                &lt;/div&gt;
+                &lt;!-- End Chart --&gt;
+
+                &lt;!-- Legend Indicators --&gt;
+                &lt;div class="row justify-content-center"&gt;
+                  &lt;div class="col-auto"&gt;
+                    &lt;span class="legend-indicator bg-primary"&gt;&lt;/span&gt; New
+                  &lt;/div&gt;
+
+                  &lt;div class="col-auto"&gt;
+                    &lt;span class="legend-indicator" style="background-color: #7000f2;"&gt;&lt;/span&gt; Pending
+                  &lt;/div&gt;
+
+                  &lt;div class="col-auto"&gt;
+                    &lt;span class="legend-indicator bg-info"&gt;&lt;/span&gt; Failed
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;!-- End Legend Indicators --&gt;
+              </code>
+            </pre>
+          </div>
+
+          <div class="tab-pane fade" id="nav-js10" role="tabpanel" aria-labelledby="nav-jsTab10">
+            <pre>
+              <code class="language-markup" data-lang="html">
+                &lt;!-- JS Implementing Plugins --&gt;
+                &lt;script src="../node_modules/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.min.js"&gt;&lt;/script&gt;
+
+                &lt;script&gt;
+                  (function () {
+                   document.querySelectorAll('.js-chart-datalabels').forEach(item => {
+                      HSCore.components.HSChartJS.init(item, {
+                        plugins: [ChartDataLabels],
+                        options: {
+                          plugins: {
+                            datalabels: {
+                              anchor: function(context) {
+                                var value = context.dataset.data[context.dataIndex];
+                                return value.r &lt; 20 ? 'end' : 'center';
+                              },
+                              align: function(context) {
+                                var value = context.dataset.data[context.dataIndex];
+                                return value.r &lt; 20 ? 'end' : 'center';
+                              },
+                              color: function(context) {
+                                var value = context.dataset.data[context.dataIndex];
+                                return value.r &lt; 20 ? context.dataset.backgroundColor : context.dataset.color;
+                              },
+                              font: function(context) {
+                                var value = context.dataset.data[context.dataIndex],
+                                        fontSize = 25;
+
+                                if (value.r > 50) {
+                                  fontSize = 35;
+                                }
+
+                                if (value.r > 70) {
+                                  fontSize = 55;
+                                }
+
+                                return {
+                                  weight: 'lighter',
+                                  size: fontSize
+                                };
+                              },
+                              offset: 2,
+                              padding: 0
+                            }
+                          }
+                        },
+                      });
+                    })
+                  })()
+                &lt;/script&gt;
+              </code>
+            </pre>
+          </div>
+        </div>
+        <!-- End Tab Content -->
+      </div>
+      <!-- End Card -->
+
+      <!-- Heading -->
+      <h2 id="matrix-chart" class="hs-docs-heading">
+        Matrix chart <a class="anchorjs-link" href="#matrix-chart" aria-label="Anchor" data-anchorjs-icon="#"></a>
+      </h2>
+      <!-- End Heading -->
+
+      <!-- Card -->
+      <div class="card">
+        <!-- Header -->
+        <div class="card-header">
+          <!-- Nav -->
+          <ul class="nav nav-segment" id="navTab11" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="nav-resultTab11" data-bs-toggle="pill" href="#nav-result11" role="tab" aria-controls="nav-result11" aria-selected="true">Preview</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="nav-htmlTab11" data-bs-toggle="pill" href="#nav-html11" role="tab" aria-controls="nav-html11" aria-selected="false">HTML</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="nav-jsTab11" data-bs-toggle="pill" href="#nav-js11" role="tab" aria-controls="nav-js11" aria-selected="false">JS</a>
+            </li>
+          </ul>
+          <!-- End Nav -->
+        </div>
+        <!-- End Header -->
+
+        <!-- Alert -->
+        <div class="alert alert-soft-dark card-alert" role="alert">
+          This example uses <a class="alert-link" href="https://github.com/kurkle/chartjs-chart-matrix" target="_blank">Chart matrix module for Chart.js <i class="tio-open-in-new"></i></a> library.
+        </div>
+        <!-- End Alert -->
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="navTabContent11">
+          <div class="tab-pane fade p-4 show active" id="nav-result11" role="tabpanel" aria-labelledby="nav-resultTab11">
+            <!-- Matrix Chart -->
+            <div class="chartjs-matrix-custom mb-3" style="min-width: 100%; width: 700px;">
+              <canvas class="js-chart-matrix" data-hs-chartjs-options='{
+                          "options": {
+                            "matrixBackgroundColor": {
+                               "color": "#377dff",
+                               "accent": 50,
+                               "additionToValue": 2
+                            },
+                            "matrixLegend": {
+                              "container": "#matrixLegend"
+                            }
+                          }
+                        }'></canvas>
+            </div>
+            <!-- End Matrix Chart -->
+
+            <!-- Matrix Legend -->
+            <ul id="matrixLegend" class="mb-0"></ul>
+          </div>
+
+          <div class="tab-pane fade" id="nav-html11" role="tabpanel" aria-labelledby="nav-htmlTab11">
+            <pre>
+              <code class="language-markup" data-lang="html">
+                &lt;!-- Matrix Chart --&gt;
+                  &lt;div class=&quot;chartjs-matrix-custom mb-3&quot; style=&quot;min-width: 100%; width: 700px;&quot;&gt;
+                    &lt;canvas class=&quot;js-chart-matrix&quot;
+                            data-hs-chartjs-options='{
+                          &quot;options&quot;: {
+                            &quot;matrixBackgroundColor&quot;: {
+                               &quot;color&quot;: &quot;#377dff&quot;,
+                               &quot;accent&quot;: 50,
+                               &quot;additionToValue&quot;: 2
+                            },
+                            &quot;matrixLegend&quot;: {
+                              &quot;container&quot;: &quot;#matrixLegend&quot;
+                            }
+                          }
+                        }'&gt;&lt;/canvas&gt;
+                &lt;/div&gt;
+                &lt;!-- End Matrix Chart --&gt;
+
+                &lt;!-- Matrix Legend --&gt;
+                &lt;ul id="matrixLegend" class="mb-0"&gt;&lt;/ul&gt;
+              </code>
+            </pre>
+          </div>
+
+          <div class="tab-pane fade" id="nav-js11" role="tabpanel" aria-labelledby="nav-jsTab11">
+            <pre>
+              <code class="language-markup" data-lang="html">
+                &lt;!-- JS Implementing Plugins --&gt;
+                &lt;script src="../node_modules/chart.js/dist/Chart.min.js"&gt;&lt;/script&gt;
+                &lt;script src="../node_modules/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.min.js"&gt;&lt;/script&gt;
+                &lt;script src="../node_modules/daterangepicker/moment.min.js"&gt;&lt;/script&gt;
+
+                &lt;!-- JS Front --&gt;
+                &lt;script src="../assets/js/hs.chartjs.js"&gt;&lt;/script&gt;
+                &lt;script src="../assets/js/hs.chartjs-matrix.js"&gt;&lt;/script&gt;
+
+                &lt;script&gt;
+                  (function () {
+                    function generateHoursData() {
+                      var data = [];
+                      var dt = moment().subtract(365, 'days').startOf('day');
+                      var end = moment().startOf('day');
+                      while(dt &lt;= end) {
+                        data.push({
+                          x: dt.format('YYYY-MM-DD'),
+                          y: dt.format('e'),
+                          d: dt.format('YYYY-MM-DD'),
+                          v: Math.random() * 24
+                        });
+                        dt = dt.add(1, 'day');
+                      }
+                      return data;
+                    }
+
+                    HSCore.components.HSChartMatrixJS.init(document.querySelector('.js-chart-matrix'), {
+                      data: {
+                        datasets: [{
+                          label: 'Commits',
+                          data: generateHoursData(),
+                          width: function(ctx) {
+                            var a = ctx.chart.chartArea;
+                            return (a.right - a.left) / 70;
+                          },
+                          height: function(ctx) {
+                            var a = ctx.chart.chartArea;
+                            return (a.bottom - a.top) / 10;
+                          }
+                        }]
+                      },
+                      options: {
+                        tooltips: {
+                          callbacks: {
+                            title: function() { return '';},
+                            label: function(item, data) {
+                              var v = data.datasets[item.datasetIndex].data[item.index];
+
+                              if (v.v.toFixed() > 0) {
+                                return '&lt;span class="fw-semi-bold"&gt;' + v.v.toFixed() + 'hours&lt;/span&gt; on ' + v.d;
+                              }  else {
+                                return '&lt;span class="fw-semi-bold"&gt;No time&lt;/span&gt; on ' + v.d;
+                              }
+                            }
+                          }
+                        },
+                        scales: {
+                          xAxes: [{
+                            position: 'bottom',
+                            type: 'time',
+                            offset: true,
+                            time: {
+                              unit: 'week',
+                              round: 'week',
+                              displayFormats: {
+                                week: 'MMM'
+                              }
+                            },
+                            ticks: {
+                              "labelOffset": 20,
+                              "maxRotation": 0,
+                              "minRotation": 0,
+                              "fontSize": 12,
+                              "fontColor": "rgba(22, 52, 90, 0.5)",
+                              "maxTicksLimit": 12,
+                            },
+                            gridLines: {
+                              display: false
+                            }
+                          }],
+                          yAxes: [{
+                            type: 'time',
+                            offset: true,
+                            time: {
+                              unit: 'day',
+                              parser: 'e',
+                              displayFormats: {
+                                day: 'ddd'
+                              }
+                            },
+                            ticks: {
+                              "fontSize": 12,
+                              "fontColor": "rgba(22, 52, 90, 0.5)",
+                              "maxTicksLimit": 2,
+                            },
+                            gridLines: {
+                              display: false
+                            }
+                          }]
+                        }
+                      }
+                    })
+                  })()
+                &lt;/script&gt;
+              </code>
+            </pre>
+          </div>
+        </div>
+        <!-- End Tab Content -->
+      </div>
+      <!-- End Card -->
+
+      <!-- Heading -->
+      <h2 id="chartjs-methods" class="hs-docs-heading">
+        ChartJS methods <a class="anchorjs-link" href="#chartjs-methods" aria-label="Anchor" data-anchorjs-icon="#"></a>
+      </h2>
+      <!-- End Heading -->
+
+      <!-- Card -->
+      <div class="card">
+        <!-- Table -->
+        <div class="table-responsive">
+          <table class="table table-thead-bordered card-table">
+            <thead class="thead-light">
+              <tr>
+                <th>Parameters</th>
+                <th style="width: 50%;">Description</th>
+                <th class="text-nowrap">Default value</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td><code>options.scales.yAxes.ticks.prefix</code></td>
+                <td>Preffix for yAxes.</td>
+                <td><code>false</code></td>
+              </tr>
+
+              <tr>
+                <td><code>options.scales.yAxes.ticks.postfix</code></td>
+                <td>Postfix for yAxes.</td>
+                <td><code>false</code></td>
+              </tr>
+
+              <tr>
+                <td><code>options.scales.yAxes.ticks.metric</code></td>
+                <td>Metric output for axes <code>(1k, 1kk, etc..)</code>.</td>
+                <td><code>false</code></td>
+              </tr>
+
+              <tr>
+                <td><code>options.responsive</code></td>
+                <td>Responsive chart.</td>
+                <td><code>true</code></td>
+              </tr>
+
+              <tr>
+                <td><code>options.maintainAspectRatio</code></td>
+                <td>Maintain the original canvas aspect ratio <code>(width / height)</code> when resizing.</td>
+                <td><code>false</code></td>
+              </tr>
+
+              <tr>
+                <td><code>options.legend.display</code></td>
+                <td>Legend for chart.</td>
+                <td><code>false</code></td>
+              </tr>
+
+              <tr>
+                <td><code>options.tooltips.enabled</code></td>
+                <td>Enable or disable tooltips.</td>
+                <td><code>false</code></td>
+              </tr>
+
+              <tr>
+                <td><code>options.tooltips.prefix</code></td>
+                <td>Prefix for tooltip text.</td>
+                <td><code>false</code></td>
+              </tr>
+
+              <tr>
+                <td><code>options.tooltips.postfix</code></td>
+                <td>Postfix for tooltip text.</td>
+                <td><code>false</code></td>
+              </tr>
+
+              <tr>
+                <td><code>options.tooltips.yearStamp</code></td>
+                <td>Added year after title.</td>
+                <td><code>true</code></td>
+              </tr>
+
+              <tr>
+                <td><code>options.tooltips.hasIndicator</code></td>
+                <td>Add indicator for tooltip.</td>
+                <td><code>false</code></td>
+              </tr>
+
+              <tr>
+                <td><code>options.tooltips.indicatorWidth</code></td>
+                <td>Width indicator.</td>
+                <td><code>8px</code></td>
+              </tr>
+
+              <tr>
+                <td><code>options.tooltips.indicatorHeight</code></td>
+                <td>Height indicator.</td>
+                <td><code>8px</code></td>
+              </tr>
+
+              <tr>
+                <td><code>options.tooltips.lineMode</code></td>
+                <td>Set line tooltip type.</td>
+                <td><code>false</code></td>
+              </tr>
+
+              <tr>
+                <td><code>options.tooltips.lineWithLineColor</code></td>
+                <td>Set color for line.</td>
+                <td><code>null</code></td>
+              </tr>
+
+              <tr>
+                <td><code>options.tooltips.lineWithLineBottomOffset</code></td>
+                <td>Offset of the top for line.</td>
+                <td><code>7</code></td>
+              </tr>
+
+              <tr>
+                <td><code>options.tooltips.lineWithLineBottomOffset</code></td>
+                <td>Offset of the bottom for line.</td>
+                <td><code>43</code></td>
+              </tr>
+
+              <tr>
+                <td><code>options.gradientPosition</code></td>
+                <td>Gradient position.</td>
+                <td><code>{
+                x0: 0,
+                y0: 0,
+                x1: 0,
+                y1: 0
+                }</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- End Table -->
+      </div>
+      <!-- End Card -->
+
+      <!-- Heading -->
+      <h2 id="matrix-methods" class="hs-docs-heading">
+        Matrix methods <a class="anchorjs-link" href="#matrix-methods" aria-label="Anchor" data-anchorjs-icon="#"></a>
+      </h2>
+      <!-- End Heading -->
+
+      <!-- Card -->
+      <div class="card">
+        <!-- Table -->
+        <div class="table-responsive">
+          <table class="table table-thead-bordered card-table">
+            <thead class="thead-light">
+              <tr>
+                <th>Parameters</th>
+                <th style="width: 50%;">Description</th>
+                <th class="text-nowrap">Default value</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td><code>options.matrixBackgroundColor.color</code></td>
+                <td>Set color for matrix chart.</td>
+                <td><code>null</code></td>
+              </tr>
+              <tr>
+                <td><code>options.matrixBackgroundColor.accent</code></td>
+                <td>Set accent color for matrix chart. Usually this is the maximum value from datasets.</td>
+                <td><code>null</code></td>
+              </tr>
+              <tr>
+                <td><code>options.matrixBackgroundColor.nullColor</code></td>
+                <td>Set custom color for empty items in matrix chart.</td>
+                <td><code>false</code></td>
+              </tr>
+              <tr>
+                <td><code>options.matrixBackgroundColor.additionToValue</code></td>
+                <td>Add addition value to value of item in matrix chart.</td>
+                <td><code>5</code></td>
+              </tr>
+              <tr>
+                <td><code>options.matrixLegend.container</code></td>
+                <td>Wrapper for custom legends.</td>
+                <td><code>5</code></td>
+              </tr>
+              <tr>
+                <td><code>options.matrixLegend.stepSize</code></td>
+                <td>Step size for legends.</td>
+                <td><code>max / 10</code></td>
+              </tr>
+              <tr>
+                <td><code>options.matrixLegend.metric</code></td>
+                <td>Metric output for legend values <code>(1k, 1kk, etc..)</code>.</td>
+                <td><code>false</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- End Table -->
+      </div>
+      <!-- End Card -->
+    </div>
+    <!-- End Content -->
+  </main>
+  <!-- ========== END MAIN CONTENT ========== -->
+
+  <!-- ========== SECONDARY CONTENTS ========== -->
+  <!-- Go To -->
+  <a class="js-go-to go-to position-fixed" href="javascript:;" style="visibility: hidden;" data-hs-go-to-options='{
+       "offsetTop": 700,
+       "position": {
+         "init": {
+           "right": "2rem"
+         },
+         "show": {
+           "bottom": "2rem"
+         },
+         "hide": {
+           "bottom": "-2rem"
+         }
+       }
+     }'>
+    <i class="bi-chevron-up"></i>
+  </a>
+  <!-- ========== END SECONDARY CONTENTS ========== -->
+
+  <!-- JS Implementing Plugins -->
+  <script src="../assets/js/vendor.min.js"></script>
+  <script src="../assets/vendor/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.min.js"></script>
+
+  <!-- JS Front -->
+  <script src="../assets/js/theme.min.js"></script>
+  <script src="../assets/js/hs.theme-appearance-charts.js"></script>
+
+  <!-- JS Plugins Init. -->
+  <script>
+    (function() {
+      // INITIALIZATION OF HEADER
+      // =======================================================
+      new HSHeader('#header').init()
+
+
+      // INITIALIZATION OF NAV SCROLLER
+      // =======================================================
+      new HsNavScroller('.js-nav-scroller', {
+        delay: 400,
+        offset: 140
+      })
+
+
+      // INITIALIZATION OF LISTJS COMPONENT
+      // =======================================================
+      HSCore.components.HSList.init('#docsSearch');
+      const docsSearch = HSCore.components.HSList.getItem('docsSearch');
+
+
+      // GET JSON FILE RESULTS
+      // =======================================================
+      fetch('../assets/json/docs-search.json')
+      .then(response => response.json())
+      .then(data => {
+        docsSearch.add(data)
+      })
+
+
+      // INITIALIZATION OF GO TO
+      // =======================================================
+      new HSGoTo('.js-go-to')
+
+      // INITIALIZATION OF CHARTJS
+      // =======================================================
+      Chart.plugins.unregister(ChartDataLabels)
+
+      HSCore.components.HSChartJS.init('.js-chart')
+
+
+      // INITIALIZATION OF LINE UPDATING CHARTJS
+      // =======================================================
+      const updatingChartDatasets = [
+        [
+          [18,51,60,38,88,50,40,52,88,80,60,70],
+          [27,38,60,77,40,50,49,29,42,27,42,50]
+        ],
+        [
+          [77,40,50,49,27,38,60,42,50,29,42,27],
+          [60,38,18,51,88,50,40,52,60,70,88,80]
+        ]
+      ]
+
+      HSCore.components.HSChartJS.init(document.querySelector('#updatingLineChart'), {
+        data: {
+          datasets: [
+            {
+              data: updatingChartDatasets[0][0]
+            },
+            {
+              data: updatingChartDatasets[0][1]
+            }
+          ]
+        }
+      })
+
+      const updatingLineChart = HSCore.components.HSChartJS.getItem('updatingLineChart')
+
+      // Call when tab is clicked
+      document.querySelectorAll('[data-toggle="chart"]').forEach(item => {
+        item.addEventListener('click', e => {
+          let keyDataset = e.currentTarget.getAttribute('data-datasets')
+
+          // Update datasets for chart
+          updatingLineChart.data.datasets.forEach(function(dataset, key) {
+            dataset.data = updatingChartDatasets[keyDataset][key];
+          })
+          updatingLineChart.update()
+        })
+      })
+
+
+      // INITIALIZATION OF BAR UPDATING CHARTJS
+      // =======================================================
+      HSCore.components.HSChartJS.init(document.querySelector('#updatingBarChart'));
+
+      const updatingBarChart = HSCore.components.HSChartJS.getItem('updatingBarChart')
+
+      // Call when tab is clicked
+      document.querySelectorAll('[data-toggle="chart-bar"]').forEach(item => {
+        item.addEventListener('click', e => {
+          let keyDataset = e.currentTarget.getAttribute('data-datasets')
+
+          if (keyDataset === 'lastWeek') {
+            updatingBarChart.data.labels = ["Apr 22", "Apr 23", "Apr 24", "Apr 25", "Apr 26", "Apr 27", "Apr 28", "Apr 29", "Apr 30", "Apr 31"];
+            updatingBarChart.data.datasets = [
+              {
+                "data": [120, 250, 300, 200, 300, 290, 350, 100, 125, 320],
+                "backgroundColor": "#377dff",
+                "hoverBackgroundColor": "#377dff",
+                "borderColor": "#377dff"
+              },
+              {
+                "data": [250, 130, 322, 144, 129, 300, 260, 120, 260, 245, 110],
+                "backgroundColor": "#e7eaf3",
+                "borderColor": "#e7eaf3"
+              }
+            ];
+            updatingBarChart.update();
+          } else {
+            updatingBarChart.data.labels = ["May 1", "May 2", "May 3", "May 4", "May 5", "May 6", "May 7", "May 8", "May 9", "May 10"];
+            updatingBarChart.data.datasets = [
+              {
+                "data": [200, 300, 290, 350, 150, 350, 300, 100, 125, 220],
+                "backgroundColor": "#377dff",
+                "hoverBackgroundColor": "#377dff",
+                "borderColor": "#377dff"
+              },
+              {
+                "data": [150, 230, 382, 204, 169, 290, 300, 100, 300, 225, 120],
+                "backgroundColor": "#e7eaf3",
+                "borderColor": "#e7eaf3"
+              }
+            ]
+            updatingBarChart.update();
+          }
+        })
+      })
+
+
+      // INITIALIZATION OF DOUGHNUT UPDATING CHARTJS
+      // =======================================================
+      HSCore.components.HSChartJS.init(document.querySelector('#updatingDoughnutChart'));
+
+      var updatingDoughnutChart =  HSCore.components.HSChartJS.getItem('updatingDoughnutChart')
+
+      // Datasets for chart, can be loaded from AJAX request
+      var updatingDoughnutChartDatasets = [
+        [
+          [45, 25, 30]
+        ],
+        [
+          [35, 50, 15]
+        ]
+      ]
+
+      // Set datasets for chart when page is loaded
+      updatingDoughnutChart.data.datasets.forEach(function(dataset, key) {
+        dataset.data = updatingDoughnutChartDatasets[0][key];
+      });
+      updatingDoughnutChart.update();
+
+      // Call when tab is clicked
+      document.querySelectorAll('[data-toggle="chart-doughnut"]').forEach(item => {
+        item.addEventListener('click', e => {
+          let keyDataset = e.currentTarget.getAttribute('data-datasets')
+
+          // Update datasets for chart
+          updatingDoughnutChart.data.datasets.forEach(function(dataset, key) {
+            dataset.data = updatingDoughnutChartDatasets[keyDataset][key];
+          });
+          updatingDoughnutChart.update();
+        })
+      })
+
+
+      // INITIALIZATION OF DOUGHNUT-HALF CHARTJS
+      // =======================================================
+      HSCore.components.HSChartJS.init(document.querySelector('.js-chartjs-doughnut-half'), {
+        options: {
+          tooltips: {
+            postfix: "%"
+          },
+          cutoutPercentage: 85,
+          rotation: 1 * Math.PI,
+          circumference: 1 * Math.PI
+        }
+      })
+
+
+      // INITIALIZATION OF DOUGHNUT-HALF UPDATING CHARTJS
+      // =======================================================
+      HSCore.components.HSChartJS.init(document.querySelector('.js-chartjs-doughnut-half-dynamic'), {
+        options: {
+          tooltips: {
+            postfix: "%"
+          },
+          cutoutPercentage: 85,
+          rotation: 1 * Math.PI,
+          circumference: 1 * Math.PI
+        }
+      })
+
+      const halfChart = HSCore.components.HSChartJS.getItem('updatingDoughnutHalfChart')
+
+      document.querySelector('#updatingBarChartControl').addEventListener("change", e => {
+        let $balance = document.querySelector('#js-chartjs-half-balance')
+        if (e.target.checked) {
+          halfChart.data.datasets[0].data[1] = 90
+          $balance.innerHTML = "$110,351.00"
+        } else {
+          halfChart.data.datasets[0].data[1] = 35
+          $balance.innerHTML = "$150,238.00"
+        }
+
+        halfChart.update();
+      })
+
+
+      // INITIALIZATION OF BUBBLE CHARTJS WITH DATALABELS PLUGIN
+      // =======================================================
+      document.querySelectorAll('.js-chart-datalabels').forEach(item => {
+        HSCore.components.HSChartJS.init(item, {
+          plugins: [ChartDataLabels],
+          options: {
+            plugins: {
+              datalabels: {
+                anchor: function(context) {
+                  var value = context.dataset.data[context.dataIndex];
+                  return value.r < 20 ? 'end' : 'center';
+                },
+                align: function(context) {
+                  var value = context.dataset.data[context.dataIndex];
+                  return value.r < 20 ? 'end' : 'center';
+                },
+                color: function(context) {
+                  var value = context.dataset.data[context.dataIndex];
+                  return value.r < 20 ? context.dataset.backgroundColor : context.dataset.color;
+                },
+                font: function(context) {
+                  var value = context.dataset.data[context.dataIndex],
+                          fontSize = 25;
+
+                  if (value.r > 50) {
+                    fontSize = 35;
+                  }
+
+                  if (value.r > 70) {
+                    fontSize = 55;
+                  }
+
+                  return {
+                    weight: 'lighter',
+                    size: fontSize
+                  };
+                },
+                offset: 2,
+                padding: 0
+              }
+            }
+          },
+        });
+      })
+
+
+      // INITIALIZATION OF MATRIX CHARTJS WITH CHARTJS MATRIX PLUGIN
+      // =======================================================
+      function generateHoursData() {
+        var data = [];
+        var dt = moment().subtract(365, 'days').startOf('day');
+        var end = moment().startOf('day');
+        while(dt <= end) {
+          data.push({
+            x: dt.format('YYYY-MM-DD'),
+            y: dt.format('e'),
+            d: dt.format('YYYY-MM-DD'),
+            v: Math.random() * 24
+          });
+          dt = dt.add(1, 'day');
+        }
+        return data;
+      }
+
+      HSCore.components.HSChartMatrixJS.init(document.querySelector('.js-chart-matrix'), {
+        data: {
+          datasets: [{
+            label: 'Commits',
+            data: generateHoursData(),
+            width: function(ctx) {
+              var a = ctx.chart.chartArea;
+              return (a.right - a.left) / 70;
+            },
+            height: function(ctx) {
+              var a = ctx.chart.chartArea;
+              return (a.bottom - a.top) / 10;
+            }
+          }]
+        },
+        options: {
+          tooltips: {
+            callbacks: {
+              title: function() { return '';},
+              label: function(item, data) {
+                var v = data.datasets[item.datasetIndex].data[item.index];
+
+                if (v.v.toFixed() > 0) {
+                  return '<span class="fw-semi-bold">' + v.v.toFixed() + 'hours</span> on ' + v.d;
+                }  else {
+                  return '<span class="fw-semi-bold">No time</span> on ' + v.d;
+                }
+              }
+            }
+          },
+          scales: {
+            xAxes: [{
+              position: 'bottom',
+              type: 'time',
+              offset: true,
+              time: {
+                unit: 'week',
+                round: 'week',
+                displayFormats: {
+                  week: 'MMM'
+                }
+              },
+              ticks: {
+                "labelOffset": 20,
+                "maxRotation": 0,
+                "minRotation": 0,
+                "fontSize": 12,
+                "fontColor": "rgba(22, 52, 90, 0.5)",
+                "maxTicksLimit": 12,
+              },
+              gridLines: {
+                display: false
+              }
+            }],
+            yAxes: [{
+              type: 'time',
+              offset: true,
+              time: {
+                unit: 'day',
+                parser: 'e',
+                displayFormats: {
+                  day: 'ddd'
+                }
+              },
+              ticks: {
+                "fontSize": 12,
+                "fontColor": "rgba(22, 52, 90, 0.5)",
+                "maxTicksLimit": 2,
+              },
+              gridLines: {
+                display: false
+              }
+            }]
+          }
+        }
+      })
+    })()
+  </script>
+</body>
+</html>
